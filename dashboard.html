@@ -8,78 +8,41 @@
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: #000;
-      color: #ffd700;
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto 1fr auto;
+      background: #000; color: #ffd700; font-family: 'Montserrat', sans-serif;
+      min-height: 100vh; display: grid;
+      grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto;
     }
     header {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      border-bottom: 1px solid #333;
+      grid-column: 1 / -1; text-align: center; padding: 20px;
+      background: #111; border-bottom: 1px solid #333;
     }
-    header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 28px;
-      letter-spacing: 3px;
-    }
+    header h1 { font-family: 'Cinzel', serif; font-size: 28px; letter-spacing: 3px; }
     .left {
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px 20px;
-      align-items: center;
+      background: #000; display: flex; flex-direction: column;
+      justify-content: space-between; padding: 40px 20px; align-items: center;
     }
-    .left img {
-      width: 70%;
-      max-width: 300px;
-    }
+    .left img { width: 70%; max-width: 300px; }
     .right {
-      background: #111;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
+      background: #111; padding: 40px; display: flex; flex-direction: column; gap: 25px;
     }
     .account-header {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      border: 2px solid #ffd700;
-      border-radius: 12px;
+      text-align: center; padding: 20px; background: #000;
+      border: 2px solid #ffd700; border-radius: 12px;
     }
-    .account-header h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 26px;
-      margin-bottom: 5px;
-    }
+    .account-header h2 { font-family: 'Cinzel', serif; font-size: 26px; margin-bottom: 5px; }
     .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px;
     }
     .stat {
-      background: #000;
-      padding: 18px;
-      border: 1px solid #ffd700;
-      border-radius: 10px;
-      text-align: center;
+      background: #000; padding: 18px; border: 1px solid #ffd700;
+      border-radius: 10px; text-align: center;
     }
     .stat h3 { font-size: 13px; color: #aaa; }
     .stat p { font-size: 24px; font-family: 'Cinzel', serif; font-weight: bold; }
 
     .ticker {
-      background: #000;
-      padding: 18px;
-      border: 1px solid #ffd700;
-      border-radius: 10px;
-      overflow: hidden;
+      background: #000; padding: 18px; border: 1px solid #ffd700;
+      border-radius: 10px; overflow: hidden;
     }
     .ticker marquee { font-family: 'Cinzel', serif; font-size: 15px; }
     .price { margin: 0 20px; }
@@ -87,25 +50,13 @@
     .down { color: #ff0000; }
 
     .logout {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #ffd700;
-      color: #000;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
+      position: absolute; top: 20px; right: 20px;
+      background: #ffd700; color: #000; padding: 8px 16px;
+      border-radius: 6px; text-decoration: none; font-weight: bold;
     }
     footer {
-      grid-column: 1 / -1;
-      background: #111;
-      padding: 15px;
-      text-align: center;
-      font-size: 14px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
+      grid-column: 1 / -1; background: #111; padding: 15px; text-align: center;
+      font-size: 14px; display: flex; justify-content: center; gap: 30px;
       border-top: 1px solid #333;
     }
     footer a { color: #ffd700; text-decoration: none; }
@@ -113,15 +64,13 @@
 </head>
 <body>
 
-  <header>
-    <h1>RESERVES WISE</h1>
-  </header>
+  <header><h1>RESERVES WISE</h1></header>
 
   <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'">Logout</a>
 
   <div class="left">
-    <img src="logo.png" alt="Logo Top">
-    <img src="logo1.png" alt="Logo Bottom">
+    <img src="logo1.png" alt="Logo">
+    <img src="logo.png" alt="Logo">
   </div>
 
   <div class="right">
@@ -131,18 +80,9 @@
     </div>
 
     <div class="stats">
-      <div class="stat">
-        <h3>CURRENT AMOUNT</h3>
-        <p>$<span id="current">12,450.00</span></p>
-      </div>
-      <div class="stat">
-        <h3>RECEIVED AMOUNT</h3>
-        <p>$<span id="received">8,720.50</span></p>
-      </div>
-      <div class="stat">
-        <h3>PENDING AMOUNT</h3>
-        <p>$<span id="pending">3,729.50</span></p>
-      </div>
+      <div class="stat"><h3>CURRENT AMOUNT</h3><p>$12,450.00</p></div>
+      <div class="stat"><h3>RECEIVED AMOUNT</h3><p>$8,720.50</p></div>
+      <div class="stat"><h3>PENDING AMOUNT</h3><p>$3,729.50</p></div>
     </div>
 
     <div class="ticker">
@@ -159,10 +99,6 @@
 
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
-
-    document.getElementById('current').textContent = '12,450.00';
-    document.getElementById('received').textContent = '8,720.50';
-    document.getElementById('pending').textContent = '3,729.50';
 
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
       .then(r => r.json())
