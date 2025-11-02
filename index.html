@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | Reserves Wise</title>
+  <title>Yasin Yildirim | Reserves Wise</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -14,180 +14,287 @@
       overflow: hidden;
     }
 
-    /* Full Screen Logo Background */
-    .bg {
-      background: url('logo.png') center/cover no-repeat;
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       height: 100%;
+    }
+
+    .left {
+      background: url('logo.png') center/cover no-repeat;
       position: relative;
+    }
+    .left::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to right, rgba(0, 10, 30, 0.9), transparent);
+    }
+
+    .right {
+      background: linear-gradient(135deg, rgba(0, 20, 60, 0.95), rgba(0, 10, 40, 0.98));
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .glass-card {
+      background: rgba(10, 30, 70, 0.3);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid rgba(100, 181, 246, 0.25);
+      box-shadow: 0 8px 28px rgba(0, 30, 80, 0.3);
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(30, 136, 229, 0.3);
+      border-color: rgba(100, 181, 246, 0.4);
+    }
+
+    .header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      color: #64b5f6;
+      text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+      letter-spacing: 2px;
+    }
+    .header p {
+      color: #90caf9;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .current-amount {
+      text-align: center;
+    }
+    .current-amount .main-amount {
+      font-size: 36px;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .current-amount .ready-transfer {
+      font-size: 16px;
+      color: #42a5f5;
+      margin-bottom: 6px;
+    }
+    .current-amount .transfer-stage {
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    /* Dark Blue Overlay */
-    .overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0, 10, 30, 0.85), rgba(0, 20, 60, 0.9));
-      z-index: 1;
-    }
-
-    /* Glassy Login Box */
-    .login-container {
-      position: relative;
-      z-index: 2;
-      width: 90%;
-      max-width: 420px;
-      background: rgba(10, 25, 50, 0.35);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      padding: 45px 35px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 30, 80, 0.4);
-      border: 1px solid rgba(100, 150, 255, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .login-container:hover {
-      transform: translateY(-5px);
-    }
-
-    .login-container h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 30px;
-      margin-bottom: 8px;
-      letter-spacing: 3px;
-      color: #64b5f6;
-      text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
-    }
-
-    .login-container p {
-      color: #90caf9;
+      gap: 8px;
       font-size: 14px;
-      margin-bottom: 28px;
-      opacity: 0.9;
+      color: #ffca28;
+      background: rgba(255, 202, 40, 0.15);
+      padding: 8px 16px;
+      border-radius: 30px;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    .current-amount .transfer-stage i {
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    input {
-      width: 100%;
-      padding: 15px;
-      margin: 12px 0;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(100, 181, 246, 0.3);
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+    .stat-box h3 {
+      font-size: 13px;
+      color: #90caf9;
+      margin-bottom: 6px;
+    }
+    .stat-box p {
+      font-size: 22px;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
       color: #fff;
-      border-radius: 12px;
-      font-size: 16px;
-      transition: 0.3s;
-      backdrop-filter: blur(5px);
     }
 
-    input:focus {
-      outline: none;
-      border-color: #64b5f6;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 15px rgba(100, 181, 246, 0.4);
+    .updates {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .update-item {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #42a5f5;
+      border-radius: 0 12px 12px 0;
+    }
+    .update-item h4 {
+      color: #64b5f6;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .update-item p {
+      font-size: 13px;
+      color: #bbdefb;
+      line-height: 1.5;
     }
 
-    button {
-      width: 100%;
-      padding: 15px;
+    .ticker {
+      padding: 16px;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+    }
+    .price { margin: 0 18px; }
+    .up { color: #00e676; }
+    .down { color: #ff5252; }
+
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
       background: linear-gradient(135deg, #1e88e5, #42a5f5);
       color: white;
-      border: none;
-      border-radius: 12px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.4s;
-      margin-top: 15px;
+      font-size: 13px;
       box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
+      transition: 0.3s;
+      cursor: pointer;
     }
-
-    button:hover {
+    .logout:hover {
       background: linear-gradient(135deg, #1976d2, #1e88e5);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.5);
     }
 
-    .error {
-      color: #ff6b6b;
-      margin-top: 12px;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    /* Glassy Footer Links */
     .footer-links {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+      margin-top: auto;
       display: flex;
-      gap: 35px;
-      font-size: 14px;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
       background: rgba(10, 25, 50, 0.3);
       backdrop-filter: blur(10px);
-      padding: 10px 20px;
       border-radius: 30px;
       border: 1px solid rgba(100, 181, 246, 0.2);
     }
-
     .footer-links a {
       color: #90caf9;
       text-decoration: none;
-      transition: 0.3s;
+      font-size: 13px;
     }
-
     .footer-links a:hover {
       color: #64b5f6;
-      text-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .login-container { padding: 35px 25px; }
-      .footer-links { flex-direction: column; gap: 12px; }
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .left { display: none; }
+      .right { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg">
-    <!-- Dark Blue Overlay -->
-    <div class="overlay"></div>
+  <div class="container">
 
-    <!-- Glassy Login Box -->
-    <div class="login-container">
-      <h1>RESERVES WISE</h1>
-      <p>Secure Access Portal</p>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <div class="error" id="error"></div>
-      <button onclick="login()">LOGIN</button>
-    </div>
+    <div class="left"></div>
 
-    <!-- Glassy Footer Links -->
-    <div class="footer-links">
-      <a href="#">Contact Us</a>
-      <a href="#">About Us</a>
+    <div class="right">
+
+      <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'; return false;">Logout</a>
+
+      <div class="glass-card header" style="text-align:center;padding:25px;">
+        <h1>YASIN YILDIRIM</h1>
+        <p>Account Dashboard • Reserves Wise</p>
+      </div>
+
+      <div class="glass-card current-amount">
+        <div class="main-amount">$12,450.00</div>
+        <div class="ready-transfer">Ready to Transfer: $2,800.00</div>
+        <div class="transfer-stage">
+          <i style="font-size:14px;">⟳</i> Transfer Stage: Processing
+        </div>
+      </div>
+
+      <div class="glass-card stats">
+        <div class="stat-box">
+          <h3>RECEIVED AMOUNT</h3>
+          <p>$8,720.50</p>
+        </div>
+        <div class="stat-box">
+          <h3>PENDING AMOUNT</h3>
+          <p>$3,729.50</p>
+        </div>
+      </div>
+
+      <div class="glass-card updates">
+        <div class="update-item">
+          <h4>Platform Update</h4>
+          <p>New security layer added. All transactions now use quantum encryption.</p>
+        </div>
+        <div class="update-item">
+          <h4>Market Alert</h4>
+          <p>BTC crossed $72,000. Consider rebalancing your reserves.</p>
+        </div>
+        <div class="update-item">
+          <h4>System Maintenance</h4>
+          <p>Scheduled downtime: Nov 5, 2:00 AM - 2:30 AM UTC.</p>
+        </div>
+        <div class="update-item">
+          <h4>Referral Bonus</h4>
+          <p>Invite 3 users → Get $500 credit. Program ends in 7 days.</p>
+        </div>
+      </div>
+
+      <div class="glass-card ticker">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+          <span id="crypto-ticker">Loading live prices...</span>
+        </marquee>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Contact Us</a>
+        <a href="#">About Us</a>
+      </div>
+
     </div>
   </div>
 
   <script>
-    function login() {
-      const u = document.getElementById('username').value.trim();
-      const p = document.getElementById('password').value;
-      const err = document.getElementById('error');
-
-      if (u === 'yasin.yildirim' && p === 'reserves9090') {
-        localStorage.setItem('loggedIn', 'true');
-        window.location.href = 'dashboard.html';
-      } else {
-        err.textContent = 'Invalid credentials';
-      }
+    // FIXED Login Check - Clear localStorage if invalid
+    if (!localStorage.getItem('loggedIn')) {
+      localStorage.removeItem('loggedIn'); // Clean up
+      window.location = 'index.html';
     }
+
+    // Crypto Ticker
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
+      .then(r => r.json())
+      .then(d => {
+        const coins = [
+          {n:'BTC', d:d.bitcoin}, {n:'ETH', d:d.ethereum},
+          {n:'BNB', d:d.binancecoin}, {n:'SOL', d:d.solana}, {n:'XRP', d:d.ripple}
+        ];
+        const html = coins.map(c => {
+          const ch = c.d.usd_24h_change.toFixed(2);
+          const col = ch > 0 ? 'up' : 'down';
+          return `<span class="price ${col}">${c.n} $${c.d.usd.toLocaleString()} <small>${ch > 0 ? 'Up' : 'Down'}${Math.abs(ch)}%</small></span>`;
+        }).join(' • ');
+        document.getElementById('crypto-ticker').innerHTML = html + ' • ';
+      })
+      .catch(() => {
+        document.getElementById('crypto-ticker').textContent = 'Crypto data unavailable';
+      });
   </script>
 </body>
 </html>
