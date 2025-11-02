@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | Reserves Wise</title>
+  <title>Reserves Wise</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -15,6 +15,7 @@
       background: #000;
     }
 
+    /* FULL BACKGROUND */
     .bg {
       background: url('logo.png') center/cover no-repeat;
       height: 100%;
@@ -22,62 +23,135 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
 
     .overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0, 10, 30, 0.88), rgba(0, 20, 60, 0.92));
+      background: linear-gradient(to bottom, rgba(0, 10, 30, 0.92), rgba(0, 20, 60, 0.95));
       z-index: 1;
     }
 
-    .login-container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 380px;
-      background: rgba(10, 25, 50, 0.4);
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-      padding: 40px 25px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 35px rgba(0, 30, 80, 0.5);
-      border: 1px solid rgba(100, 150, 255, 0.25);
+    /* LOADING SCREEN */
+    .loader {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 10, 30, 0.98);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
-    .login-container h1 {
+    .loader.hidden { opacity: 0; visibility: hidden; }
+
+    .currency-circle {
+      width: 160px;
+      height: 160px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .currency {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      background: rgba(100, 181, 246, 0.2);
+      border: 2px solid #64b5f6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 11px;
+      color: #fff;
+      animation: orbit 4s linear infinite;
+    }
+
+    .currency:nth-child(1) { top: 0; left: 62px; animation-delay: 0s; }
+    .currency:nth-child(2) { top: 20px; right: 10px; animation-delay: 0.5s; }
+    .currency:nth-child(3) { bottom: 20px; right: 10px; animation-delay: 1s; }
+    .currency:nth-child(4) { bottom: 0; left: 62px; animation-delay: 1.5s; }
+    .currency:nth-child(5) { bottom: 20px; left: 10px; animation-delay: 2s; }
+    .currency:nth-child(6) { top: 20px; left: 10px; animation-delay: 2.5s; }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+    }
+
+    .loader h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      color: #64b5f6;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .loader p {
+      font-size: 14px;
+      color: #90caf9;
+      opacity: 0.9;
+    }
+
+    /* LOGIN POP-UP */
+    .login-popup {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 380px;
+      background: rgba(10, 25, 50, 0.45);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      padding: 40px 25px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(0, 30, 80, 0.6);
+      border: 1.5px solid rgba(100, 150, 255, 0.3);
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .login-popup.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .login-popup h1 {
       font-family: 'Cinzel', serif;
       font-size: 26px;
       margin-bottom: 6px;
       letter-spacing: 2px;
       color: #64b5f6;
+      text-shadow: 0 0 12px rgba(100, 181, 246, 0.4);
     }
 
-    .login-container p {
+    .login-popup p {
       color: #90caf9;
       font-size: 13px;
       margin-bottom: 22px;
-      opacity: 0.9;
     }
 
     input {
       width: 100%;
       padding: 14px;
       margin: 10px 0;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(100, 181, 246, 0.35);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(100, 181, 246, 0.4);
       color: #fff;
       border-radius: 12px;
       font-size: 15px;
+      transition: 0.3s;
     }
 
     input:focus {
       outline: none;
       border-color: #64b5f6;
-      background: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 0 15px rgba(100, 181, 246, 0.4);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 18px rgba(100, 181, 246, 0.5);
     }
 
     button {
@@ -91,12 +165,13 @@
       font-size: 15px;
       cursor: pointer;
       margin-top: 12px;
-      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.35);
+      box-shadow: 0 5px 18px rgba(30, 136, 229, 0.4);
+      transition: 0.4s;
     }
 
     button:hover {
       background: linear-gradient(135deg, #1976d2, #1e88e5);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .error {
@@ -115,11 +190,11 @@
       display: flex;
       gap: 20px;
       font-size: 13px;
-      background: rgba(10, 25, 50, 0.35);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 25, 50, 0.4);
+      backdrop-filter: blur(12px);
       padding: 8px 16px;
       border-radius: 30px;
-      border: 1px solid rgba(100, 181, 246, 0.2);
+      border: 1px solid rgba(100, 181, 246, 0.25);
     }
 
     .footer-links a {
@@ -132,17 +207,16 @@
     }
 
     @media (max-width: 480px) {
-      .login-container {
-        padding: 35px 20px;
-        max-width: 90%;
+      .currency-circle { width: 130px; height: 130px; }
+      .currency { width: 30px; height: 30px; font-size: 10px; }
+      @keyframes orbit {
+        0% { transform: rotate(0deg) translateX(65px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(65px) rotate(-360deg); }
       }
-      .login-container h1 { font-size: 24px; }
-      .footer-links {
-        flex-direction: column;
-        gap: 10px;
-        font-size: 12px;
-        padding: 10px;
-      }
+      .loader h2 { font-size: 20px; }
+      .login-popup { padding: 30px 20px; max-width: 92%; }
+      .login-popup h1 { font-size: 23px; }
+      .footer-links { flex-direction: column; gap: 10px; font-size: 12px; }
     }
   </style>
 </head>
@@ -151,7 +225,22 @@
   <div class="bg">
     <div class="overlay"></div>
 
-    <div class="login-container">
+    <!-- LOADING SCREEN -->
+    <div class="loader" id="loader">
+      <div class="currency-circle">
+        <div class="currency">BTC</div>
+        <div class="currency">USD</div>
+        <div class="currency">EUR</div>
+        <div class="currency">GBP</div>
+        <div class="currency">JPY</div>
+        <div class="currency">INR</div>
+      </div>
+      <h2>RESERVES WISE</h2>
+      <p>Loading global reserves...</p>
+    </div>
+
+    <!-- LOGIN POP-UP -->
+    <div class="login-popup" id="loginPopup">
       <h1>RESERVES WISE</h1>
       <p>Secure Access Portal</p>
       <input type="text" id="username" placeholder="Username" />
@@ -167,13 +256,21 @@
   </div>
 
   <script>
+    // Simulate loading (2.5 sec)
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('loginPopup').classList.add('show');
+      }, 300);
+    }, 2500);
+
     function login() {
       const u = document.getElementById('username').value.trim().toLowerCase();
       const p = document.getElementById('password').value.trim();
       const err = document.getElementById('error');
       err.textContent = '';
 
-      if (u === 'yasin.yildirim' && p === 'reserves9090') {
+      if (u === 'client29989' && p === 'reserves9989') {
         localStorage.setItem('loggedIn', 'true');
         window.location.href = 'dashboard.html';
       } else {
