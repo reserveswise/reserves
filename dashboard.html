@@ -3,69 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard | Yasin Yildirim</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <title>Yasin Yildirim | Reserves Wise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap');
-
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       background: #000;
       color: #ffd700;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
     }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      max-width: 1400px;
-      margin: auto;
-      gap: 20px;
-    }
-    .left {
-      flex: 1;
-      min-width: 300px;
+    header {
+      grid-column: 1 / -1;
       text-align: center;
       padding: 20px;
+      background: #111;
+      border-bottom: 1px solid #333;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+    }
+    .left {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 20px;
+      align-items: center;
     }
     .left img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      border: 2px solid #ffd700;
+      width: 70%;
+      max-width: 300px;
     }
     .right {
-      flex: 2;
-      min-width: 300px;
+      background: #111;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .account-header {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+    }
+    .account-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      margin-bottom: 5px;
     }
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 15px;
-      margin-bottom: 30px;
     }
-    .stat-box {
-      background: #111;
-      padding: 20px;
+    .stat {
+      background: #000;
+      padding: 18px;
+      border: 1px solid #ffd700;
       border-radius: 10px;
       text-align: center;
-      border: 1px solid #ffd700;
     }
-    .stat-box h3 { font-size: 14px; margin-bottom: 8px; color: #aaa; }
-    .stat-box p { font-size: 24px; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+    .stat h3 { font-size: 13px; color: #aaa; }
+    .stat p { font-size: 24px; font-family: 'Cinzel', serif; font-weight: bold; }
 
     .ticker {
-      background: #111;
-      padding: 15px;
-      border-radius: 10px;
+      background: #000;
+      padding: 18px;
       border: 1px solid #ffd700;
+      border-radius: 10px;
       overflow: hidden;
     }
-    .ticker marquee {
-      color: #ffd700;
-      font-family: 'Orbitron', sans-serif;
-    }
+    .ticker marquee { font-family: 'Cinzel', serif; font-size: 15px; }
     .price { margin: 0 20px; }
     .up { color: #00ff00; }
     .down { color: #ff0000; }
@@ -81,83 +97,87 @@
       text-decoration: none;
       font-weight: bold;
     }
+    footer {
+      grid-column: 1 / -1;
+      background: #111;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      border-top: 1px solid #333;
+    }
+    footer a { color: #ffd700; text-decoration: none; }
   </style>
 </head>
 <body>
-  <a href="#" class="logout" onclick="logout()">Logout</a>
 
-  <div class="container">
-    <!-- LEFT: LOGO -->
-    <div class="left">
-      <img src="logo.png" alt="Yasin Yildirim Logo" />
-      <h2 style="margin-top:15px; font-family:'Orbitron',sans-serif;">YASIN YILDIRIM</h2>
+  <header>
+    <h1>RESERVES WISE</h1>
+  </header>
+
+  <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'">Logout</a>
+
+  <div class="left">
+    <img src="logo.png" alt="Logo Top">
+    <img src="logo.png" alt="Logo Bottom">
+  </div>
+
+  <div class="right">
+    <div class="account-header">
+      <h2>YASIN YILDIRIM</h2>
+      <p style="color:#aaa;font-size:14px;">Account Dashboard</p>
     </div>
 
-    <!-- RIGHT: STATS + TICKER -->
-    <div class="right">
-      <div class="stats">
-        <div class="stat-box">
-          <h3>CURRENT AMOUNT</h3>
-          <p>$<span id="current">0.00</span></p>
-        </div>
-        <div class="stat-box">
-          <h3>RECEIVED AMOUNT</h3>
-          <p>$<span id="received">0.00</span></p>
-        </div>
-        <div class="stat-box">
-          <h3>PENDING AMOUNT</h3>
-          <p>$<span id="pending">0.00</span></p>
-        </div>
+    <div class="stats">
+      <div class="stat">
+        <h3>CURRENT AMOUNT</h3>
+        <p>$<span id="current">12,450.00</span></p>
       </div>
+      <div class="stat">
+        <h3>RECEIVED AMOUNT</h3>
+        <p>$<span id="received">8,720.50</span></p>
+      </div>
+      <div class="stat">
+        <h3>PENDING AMOUNT</h3>
+        <p>$<span id="pending">3,729.50</span></p>
+      </div>
+    </div>
 
-      <div class="ticker">
-        <marquee behavior="scroll" direction="left" scrollamount="6">
-          <span id="crypto-ticker">Loading crypto prices...</span>
-        </marquee>
-      </div>
+    <div class="ticker">
+      <marquee behavior="scroll" direction="left" scrollamount="6">
+        <span id="crypto-ticker">Loading prices...</span>
+      </marquee>
     </div>
   </div>
 
+  <footer>
+    <a href="#">Contact Us</a>
+    <a href="#">About Us</a>
+  </footer>
+
   <script>
-    // Check login
-    if (!localStorage.getItem('loggedIn')) {
-      window.location.href = 'index.html';
-    }
+    if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    function logout() {
-      localStorage.removeItem('loggedIn');
-      window.location.href = 'index.html';
-    }
-
-    // Dummy values (replace with real data later)
     document.getElementById('current').textContent = '12,450.00';
     document.getElementById('received').textContent = '8,720.50';
     document.getElementById('pending').textContent = '3,729.50';
 
-    // Live Crypto Ticker
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
-      .then(res => res.json())
-      .then(data => {
-        const ticker = document.getElementById('crypto-ticker');
+      .then(r => r.json())
+      .then(d => {
         const coins = [
-          {name: 'BTC', data: data.bitcoin},
-          {name: 'ETH', data: data.ethereum},
-          {name: 'BNB', data: data.binancecoin},
-          {name: 'SOL', data: data.solana},
-          {name: 'XRP', data: data.ripple}
+          {n:'BTC', d:d.bitcoin}, {n:'ETH', d:d.ethereum},
+          {n:'BNB', d:d.binancecoin}, {n:'SOL', d:d.solana}, {n:'XRP', d:d.ripple}
         ];
-
-        const html = coins.map(coin => {
-          const change = coin.data.usd_24h_change.toFixed(2);
-          const arrow = change > 0 ? '↑' : '↓';
-          const color = change > 0 ? 'up' : 'down';
-          return `<span class="price ${color}">${coin.name} $${coin.data.usd.toLocaleString()} <small>${arrow}${Math.abs(change)}%</small></span>`;
+        const html = coins.map(c => {
+          const ch = c.d.usd_24h_change.toFixed(2);
+          const arr = ch > 0 ? 'Up' : 'Down';
+          const col = ch > 0 ? 'up' : 'down';
+          return `<span class="price ${col}">${c.n} $${c.d.usd.toLocaleString()} <small>${arr}${Math.abs(ch)}%</small></span>`;
         }).join(' • ');
-
-        ticker.innerHTML = html + ' • ';
-      })
-      .catch(() => {
-        document.getElementById('crypto-ticker').textContent = 'Crypto data unavailable';
+        document.getElementById('crypto-ticker').innerHTML = html + ' • ';
       });
   </script>
 </body>
