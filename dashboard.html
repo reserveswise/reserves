@@ -41,6 +41,28 @@
       position: relative;
     }
 
+    /* LOGOUT BUTTON - VISIBLE & TOP RIGHT */
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+      transition: 0.3s;
+      z-index: 100;
+    }
+    .logout:hover {
+      background: linear-gradient(135deg, #1976d2, #1e88e5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.6);
+    }
+
     .glass-card {
       background: rgba(10, 30, 70, 0.3);
       backdrop-filter: blur(14px) saturate(160%);
@@ -70,7 +92,29 @@
       margin-top: 4px;
     }
 
-    /* === CURRENT AMOUNT WITH SUB-PARTS === */
+    /* CRYPTO TICKER - TOP & INFINITE LOOP */
+    .ticker {
+      padding: 16px;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      background: rgba(10, 25, 50, 0.4);
+      border-radius: 12px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: scroll-left 60s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .price { margin: 0 25px; font-weight: 500; }
+    .up { color: #00e676; }
+    .down { color: #ff5252; }
+
     .current-amount {
       text-align: center;
     }
@@ -107,7 +151,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Stats Grid */
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -125,7 +168,6 @@
       color: #fff;
     }
 
-    /* Updates */
     .updates {
       display: grid;
       grid-template-columns: 1fr;
@@ -149,59 +191,38 @@
       line-height: 1.5;
     }
 
-    .ticker {
-      padding: 16px;
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      font-size: 15px;
-    }
-    .price { margin: 0 18px; }
-    .up { color: #00e676; }
-    .down { color: #ff5252; }
-
-    .logout {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #1e88e5, #42a5f5);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 13px;
-      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
-      transition: 0.3s;
-    }
-    .logout:hover {
-      background: linear-gradient(135deg, #1976d2, #1e88e5);
-      transform: translateY(-2px);
-    }
-
+    /* FOOTER WITH CONTACT & ABOUT */
     .footer-links {
       margin-top: auto;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
-      background: rgba(10, 25, 50, 0.3);
-      backdrop-filter: blur(10px);
-      border-radius: 30px;
+      justify-content: space-between;
+      padding: 18px 25px;
+      background: rgba(10, 25, 50, 0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
       border: 1px solid rgba(100, 181, 246, 0.2);
+      font-size: 13px;
     }
     .footer-links a {
       color: #90caf9;
       text-decoration: none;
-      font-size: 13px;
+      transition: 0.3s;
     }
     .footer-links a:hover {
       color: #64b5f6;
+      text-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
+    }
+    .footer-links .emails {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
       .left { display: none; }
       .right { padding: 20px; }
+      .footer-links { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
 </head>
@@ -209,13 +230,19 @@
 
   <div class="container">
 
-    <!-- LEFT: FULL LOGO -->
     <div class="left"></div>
 
-    <!-- RIGHT: GLASSY CONTENT -->
     <div class="right">
 
-      <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'">Logout</a>
+      <!-- LOGOUT BUTTON (VISIBLE) -->
+      <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'; return false;">Logout</a>
+
+      <!-- CRYPTO TICKER - TOP -->
+      <div class="glass-card ticker">
+        <div class="ticker-inner" id="crypto-ticker">
+          Loading live prices...
+        </div>
+      </div>
 
       <!-- Header -->
       <div class="glass-card header" style="text-align:center;padding:25px;">
@@ -223,7 +250,7 @@
         <p>Account Dashboard • Reserves Wise</p>
       </div>
 
-      <!-- CURRENT AMOUNT WITH SUB-PARTS -->
+      <!-- Current Amount -->
       <div class="glass-card current-amount">
         <div class="main-amount">$12,450.00</div>
         <div class="ready-transfer">Ready to Transfer: $2,800.00</div>
@@ -244,7 +271,7 @@
         </div>
       </div>
 
-      <!-- Custom Updates - EDIT HERE -->
+      <!-- Updates -->
       <div class="glass-card updates">
         <div class="update-item">
           <h4>Platform Update</h4>
@@ -264,25 +291,35 @@
         </div>
       </div>
 
-      <!-- Crypto Ticker -->
-      <div class="glass-card ticker">
-        <marquee behavior="scroll" direction="left" scrollamount="6">
-          <span id="crypto-ticker">Loading live prices...</span>
-        </marquee>
-      </div>
-
-      <!-- Footer -->
+      <!-- FOOTER: CONTACT US + ABOUT US -->
       <div class="footer-links">
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
+        <div>
+          <strong>Contact Us:</strong><br>
+          <div class="emails">
+            <a href="mailto:support@reserveswise.com">support@reserveswise.com</a>
+            <a href="mailto:compliance@reserveswise.com">compliance@reserveswise.com</a>
+            <a href="mailto:partnerships@reserveswise.com">partnerships@reserveswise.com</a>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <strong>About Us:</strong><br>
+          <span style="font-size:12px;color:#bbdefb;">
+            Reserves Wise is a global financial infrastructure platform enabling seamless cross-border transfers in 180+ currencies. We partner with central banks and governments to route reserves with zero friction, 24/7 uptime, and military-grade security.
+          </span>
+        </div>
       </div>
 
     </div>
   </div>
 
   <script>
-    if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
+    // Login Check
+    if (!localStorage.getItem('loggedIn')) {
+      localStorage.removeItem('loggedIn');
+      window.location = 'index.html';
+    }
 
+    // Crypto Ticker - Infinite Loop
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
       .then(r => r.json())
       .then(d => {
@@ -295,7 +332,9 @@
           const col = ch > 0 ? 'up' : 'down';
           return `<span class="price ${col}">${c.n} $${c.d.usd.toLocaleString()} <small>${ch > 0 ? 'Up' : 'Down'}${Math.abs(ch)}%</small></span>`;
         }).join(' • ');
-        document.getElementById('crypto-ticker').innerHTML = html + ' • ';
+        
+        const ticker = document.getElementById('crypto-ticker');
+        ticker.innerHTML = html + ' • ' + html + ' • ' + html; // Triple for smooth loop
       })
       .catch(() => {
         document.getElementById('crypto-ticker').textContent = 'Crypto data unavailable';
