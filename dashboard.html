@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Yasin Yildirim</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap');
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: #000;
+      color: #ffd700;
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      max-width: 1400px;
+      margin: auto;
+      gap: 20px;
+    }
+    .left {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      padding: 20px;
+    }
+    .left img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 2px solid #ffd700;
+    }
+    .right {
+      flex: 2;
+      min-width: 300px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .stat-box {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #ffd700;
+    }
+    .stat-box h3 { font-size: 14px; margin-bottom: 8px; color: #aaa; }
+    .stat-box p { font-size: 24px; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+
+    .ticker {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ffd700;
+      overflow: hidden;
+    }
+    .ticker marquee {
+      color: #ffd700;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .price { margin: 0 20px; }
+    .up { color: #00ff00; }
+    .down { color: #ff0000; }
+
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #ffd700;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <a href="#" class="logout" onclick="logout()">Logout</a>
+
+  <div class="container">
+    <!-- LEFT: LOGO -->
+    <div class="left">
+      <img src="logo.png" alt="Yasin Yildirim Logo" />
+      <h2 style="margin-top:15px; font-family:'Orbitron',sans-serif;">YASIN YILDIRIM</h2>
+    </div>
+
+    <!-- RIGHT: STATS + TICKER -->
+    <div class="right">
+      <div class="stats">
+        <div class="stat-box">
+          <h3>CURRENT AMOUNT</h3>
+          <p>$<span id="current">0.00</span></p>
+        </div>
+        <div class="stat-box">
+          <h3>RECEIVED AMOUNT</h3>
+          <p>$<span id="received">0.00</span></p>
+        </div>
+        <div class="stat-box">
+          <h3>PENDING AMOUNT</h3>
+          <p>$<span id="pending">0.00</span></p>
+        </div>
+      </div>
+
+      <div class="ticker">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+          <span id="crypto-ticker">Loading crypto prices...</span>
+        </marquee>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check login
+    if (!localStorage.getItem('loggedIn')) {
+      window.location.href = 'index.html';
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      window.location.href = 'index.html';
+    }
+
+    // Dummy values (replace with real data later)
+    document.getElementById('current').textContent = '12,450.00';
+    document.getElementById('received').textContent = '8,720.50';
+    document.getElementById('pending').textContent = '3,729.50';
+
+    // Live Crypto Ticker
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
+      .then(res => res.json())
+      .then(data => {
+        const ticker = document.getElementById('crypto-ticker');
+        const coins = [
+          {name: 'BTC', data: data.bitcoin},
+          {name: 'ETH', data: data.ethereum},
+          {name: 'BNB', data: data.binancecoin},
+          {name: 'SOL', data: data.solana},
+          {name: 'XRP', data: data.ripple}
+        ];
+
+        const html = coins.map(coin => {
+          const change = coin.data.usd_24h_change.toFixed(2);
+          const arrow = change > 0 ? '↑' : '↓';
+          const color = change > 0 ? 'up' : 'down';
+          return `<span class="price ${color}">${coin.name} $${coin.data.usd.toLocaleString()} <small>${arrow}${Math.abs(change)}%</small></span>`;
+        }).join(' • ');
+
+        ticker.innerHTML = html + ' • ';
+      })
+      .catch(() => {
+        document.getElementById('crypto-ticker').textContent = 'Crypto data unavailable';
+      });
+  </script>
+</body>
+</html>
