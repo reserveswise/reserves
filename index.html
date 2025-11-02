@@ -1,73 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Training Website</title>
+  <title>Login | Yasin Yildirim</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap');
+
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background: #f4f4f9;
-      color: #333;
+      background: #000;
+      color: #ffd700;
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    header {
-      background: #007acc;
-      color: white;
-      padding: 20px;
+    .login-box {
+      background: #111;
+      padding: 40px 30px;
+      border-radius: 12px;
+      width: 340px;
       text-align: center;
-      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255,215,0,0.2);
+      border: 1px solid #ffd700;
     }
-    section {
-      margin: 30px 0;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 30px;
+      font-size: 24px;
     }
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #777;
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: #222;
+      border: 1px solid #ffd700;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 16px;
     }
-    .btn {
-      background: #007acc;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 10px;
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ffd700;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      font-size: 16px;
     }
+    button:hover { background: #e6c200; }
+    .error { color: #ff6b6b; margin-top: 10px; font-size: 14px; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Training Site</h1>
-    <p>A simple website for learning GitHub Pages</p>
-  </header>
+  <div class="login-box">
+    <h2>YASIN YILDIRIM</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <div class="error" id="error"></div>
+    <button onclick="login()">LOGIN</button>
+  </div>
 
-  <section>
-    <h2>About This Site</h2>
-    <p>This is a practice project to learn:</p>
-    <ul>
-      <li>HTML & CSS basics</li>
-      <li>GitHub repositories</li>
-      <li>GitHub Pages deployment</li>
-    </ul>
-    <a href="https://docs.github.com/en/pages" class="btn" target="_blank">
-      Learn More about GitHub Pages
-    </a>
-  </section>
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value;
+      const error = document.getElementById('error');
 
-  <section>
-    <h2>Try It Yourself!</h2>
-    <p>Edit this file and push changes — your site updates automatically!</p>
-  </section>
-
-  <footer>
-    <p>© 2025 Your Name | Hosted on <a href="https://pages.github.com">GitHub Pages</a></p>
-  </footer>
+      if (user === 'yasin.yildirim' && pass === 'reserves9090') {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'dashboard.html';
+      } else {
+        error.textContent = 'Invalid credentials';
+      }
+    }
+  </script>
 </body>
 </html>
