@@ -14,14 +14,12 @@
       overflow: hidden;
     }
 
-    /* Full Split Layout */
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       height: 100%;
     }
 
-    /* LEFT: Full Logo */
     .left {
       background: url('logo.png') center/cover no-repeat;
       position: relative;
@@ -33,7 +31,6 @@
       background: linear-gradient(to right, rgba(0, 10, 30, 0.9), transparent);
     }
 
-    /* RIGHT: Glassy Panel */
     .right {
       background: linear-gradient(135deg, rgba(0, 20, 60, 0.95), rgba(0, 10, 40, 0.98));
       padding: 30px;
@@ -44,7 +41,6 @@
       position: relative;
     }
 
-    /* Glass Card Base */
     .glass-card {
       background: rgba(10, 30, 70, 0.3);
       backdrop-filter: blur(14px) saturate(160%);
@@ -52,7 +48,7 @@
       border-radius: 18px;
       padding: 20px;
       border: 1px solid rgba(100, 181, 246, 0.25);
-      box-shadow:  0 8px 28px rgba(0, 30, 80, 0.3);
+      box-shadow: 0 8px 28px rgba(0, 30, 80, 0.3);
       transition: all 0.3s ease;
     }
     .glass-card:hover {
@@ -61,7 +57,6 @@
       border-color: rgba(100, 181, 246, 0.4);
     }
 
-    /* Header */
     .header h1 {
       font-family: 'Cinzel', serif;
       font-size: 28px;
@@ -73,6 +68,43 @@
       color: #90caf9;
       font-size: 14px;
       margin-top: 4px;
+    }
+
+    /* === CURRENT AMOUNT WITH SUB-PARTS === */
+    .current-amount {
+      text-align: center;
+    }
+    .current-amount .main-amount {
+      font-size: 36px;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .current-amount .ready-transfer {
+      font-size: 16px;
+      color: #42a5f5;
+      margin-bottom: 6px;
+    }
+    .current-amount .transfer-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #ffca28;
+      background: rgba(255, 202, 40, 0.15);
+      padding: 8px 16px;
+      border-radius: 30px;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    .current-amount .transfer-stage i {
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     /* Stats Grid */
@@ -93,7 +125,7 @@
       color: #fff;
     }
 
-    /* Update Boxes - EDIT THESE YOURSELF */
+    /* Updates */
     .updates {
       display: grid;
       grid-template-columns: 1fr;
@@ -117,7 +149,6 @@
       line-height: 1.5;
     }
 
-    /* Ticker */
     .ticker {
       padding: 16px;
       text-align: center;
@@ -128,7 +159,6 @@
     .up { color: #00e676; }
     .down { color: #ff5252; }
 
-    /* Logout */
     .logout {
       position: absolute;
       top: 20px;
@@ -148,7 +178,6 @@
       transform: translateY(-2px);
     }
 
-    /* Footer */
     .footer-links {
       margin-top: auto;
       display: flex;
@@ -194,12 +223,17 @@
         <p>Account Dashboard • Reserves Wise</p>
       </div>
 
-      <!-- Stats -->
-      <div class="glass-card stats">
-        <div class="stat-box">
-          <h3>CURRENT AMOUNT</h3>
-          <p>$12,450.00</p>
+      <!-- CURRENT AMOUNT WITH SUB-PARTS -->
+      <div class="glass-card current-amount">
+        <div class="main-amount">$12,450.00</div>
+        <div class="ready-transfer">Ready to Transfer: $2,800.00</div>
+        <div class="transfer-stage">
+          <i style="font-size:14px;">⟳</i> Transfer Stage: Processing
         </div>
+      </div>
+
+      <!-- Other Stats -->
+      <div class="glass-card stats">
         <div class="stat-box">
           <h3>RECEIVED AMOUNT</h3>
           <p>$8,720.50</p>
@@ -210,7 +244,7 @@
         </div>
       </div>
 
-      <!-- Custom Updates - EDIT THESE LINES ONLY -->
+      <!-- Custom Updates - EDIT HERE -->
       <div class="glass-card updates">
         <div class="update-item">
           <h4>Platform Update</h4>
@@ -247,10 +281,8 @@
   </div>
 
   <script>
-    // Login Check
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    // Crypto Ticker
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
       .then(r => r.json())
       .then(d => {
