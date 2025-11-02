@@ -41,7 +41,7 @@
       position: relative;
     }
 
-    /* LOGOUT BUTTON - VISIBLE & TOP RIGHT */
+    /* LOGOUT - FRONT & CENTER */
     .logout {
       position: absolute;
       top: 20px;
@@ -55,12 +55,11 @@
       font-size: 14px;
       box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
       transition: 0.3s;
-      z-index: 100;
+      z-index: 9999;
     }
     .logout:hover {
       background: linear-gradient(135deg, #1976d2, #1e88e5);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(30, 136, 229, 0.6);
     }
 
     .glass-card {
@@ -75,7 +74,6 @@
     }
     .glass-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(30, 136, 229, 0.3);
       border-color: rgba(100, 181, 246, 0.4);
     }
 
@@ -86,13 +84,8 @@
       text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
       letter-spacing: 2px;
     }
-    .header p {
-      color: #90caf9;
-      font-size: 14px;
-      margin-top: 4px;
-    }
 
-    /* CRYPTO TICKER - TOP & INFINITE LOOP */
+    /* TICKER - SMOOTH INFINITE */
     .ticker {
       padding: 16px;
       text-align: center;
@@ -105,93 +98,30 @@
     }
     .ticker-inner {
       display: inline-block;
-      animation: scroll-left 60s linear infinite;
+      animation: scroll 60s linear infinite;
     }
-    @keyframes scroll-left {
+    @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-    .price { margin: 0 25px; font-weight: 500; }
-    .up { color: #00e676; }
-    .down { color: #ff5252; }
+    .price { margin: 0 25px; }
 
-    .current-amount {
-      text-align: center;
-    }
-    .current-amount .main-amount {
-      font-size: 36px;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .current-amount .ready-transfer {
-      font-size: 16px;
-      color: #42a5f5;
-      margin-bottom: 6px;
-    }
-    .current-amount .transfer-stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14px;
-      color: #ffca28;
-      background: rgba(255, 202, 40, 0.15);
-      padding: 8px 16px;
-      border-radius: 30px;
-      width: fit-content;
-      margin: 0 auto;
-    }
-    .current-amount .transfer-stage i {
-      animation: spin 1.5s linear infinite;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+    .current-amount { text-align: center; }
+    .main-amount { font-size: 36px; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; margin-bottom: 8px; }
+    .ready-transfer { font-size: 16px; color: #42a5f5; margin-bottom: 6px; }
+    .transfer-stage { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: #ffca28; background: rgba(255, 202, 40, 0.15); padding: 8px 16px; border-radius: 30px; width: fit-content; margin: 0 auto; }
+    .transfer-stage i { animation: spin 1.5s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 15px;
-    }
-    .stat-box h3 {
-      font-size: 13px;
-      color: #90caf9;
-      margin-bottom: 6px;
-    }
-    .stat-box p {
-      font-size: 22px;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      color: #fff;
-    }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+    .stat-box h3 { font-size: 13px; color: #90caf9; margin-bottom: 6px; }
+    .stat-box p { font-size: 22px; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; }
 
-    .updates {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 10px;
-    }
-    .update-item {
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 4px solid #42a5f5;
-      border-radius: 0 12px 12px 0;
-    }
-    .update-item h4 {
-      color: #64b5f6;
-      font-size: 15px;
-      margin-bottom: 6px;
-    }
-    .update-item p {
-      font-size: 13px;
-      color: #bbdefb;
-      line-height: 1.5;
-    }
+    .updates { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 10px; }
+    .update-item { padding: 16px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #42a5f5; border-radius: 0 12px 12px 0; }
+    .update-item h4 { color: #64b5f6; font-size: 15px; margin-bottom: 6px; }
+    .update-item p { font-size: 13px; color: #bbdefb; line-height: 1.5; }
 
-    /* FOOTER WITH CONTACT & ABOUT */
     .footer-links {
       margin-top: auto;
       display: flex;
@@ -203,20 +133,8 @@
       border: 1px solid rgba(100, 181, 246, 0.2);
       font-size: 13px;
     }
-    .footer-links a {
-      color: #90caf9;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .footer-links a:hover {
-      color: #64b5f6;
-      text-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
-    }
-    .footer-links .emails {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .footer-links a { color: #90caf9; text-decoration: none; }
+    .footer-links a:hover { color: #64b5f6; }
 
     @media (max-width: 768px) {
       .container { grid-template-columns: 1fr; }
@@ -229,135 +147,61 @@
 <body>
 
   <div class="container">
-
     <div class="left"></div>
 
     <div class="right">
+      <!-- LOGOUT FRONT -->
+      <a href="index.html" class="logout" onclick="localStorage.removeItem('loggedIn'); return true;">Logout</a>
 
-      <!-- LOGOUT BUTTON (VISIBLE) -->
-      <a href="#" class="logout" onclick="localStorage.removeItem('loggedIn'); window.location='index.html'; return false;">Logout</a>
-
-      <!-- CRYPTO TICKER - TOP -->
+      <!-- TICKER TOP -->
       <div class="glass-card ticker">
         <div class="ticker-inner" id="crypto-ticker">
-          Loading live prices...
+          BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • 
+          BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • 
         </div>
       </div>
 
-      <!-- Header -->
       <div class="glass-card header" style="text-align:center;padding:25px;">
         <h1>YASIN YILDIRIM</h1>
         <p>Account Dashboard • Reserves Wise</p>
       </div>
 
-      <!-- Current Amount -->
       <div class="glass-card current-amount">
         <div class="main-amount">$12,450.00</div>
         <div class="ready-transfer">Ready to Transfer: $2,800.00</div>
-        <div class="transfer-stage">
-          <i style="font-size:14px;">⟳</i> Transfer Stage: Processing
-        </div>
+        <div class="transfer-stage"><i>⟳</i> Transfer Stage: Processing</div>
       </div>
 
-      <!-- Other Stats -->
       <div class="glass-card stats">
-        <div class="stat-box">
-          <h3>RECEIVED AMOUNT</h3>
-          <p>$8,720.50</p>
-        </div>
-        <div class="stat-box">
-          <h3>PENDING AMOUNT</h3>
-          <p>$3,729.50</p>
-        </div>
+        <div class="stat-box"><h3>RECEIVED AMOUNT</h3><p>$8,720.50</p></div>
+        <div class="stat-box"><h3>PENDING AMOUNT</h3><p>$3,729.50</p></div>
       </div>
 
-      <!-- Updates -->
       <div class="glass-card updates">
-        <div class="update-item">
-          <h4>Platform Update</h4>
-          <p>New security layer added. All transactions now use quantum encryption.</p>
-        </div>
-        <div class="update-item">
-          <h4>Market Alert</h4>
-          <p>BTC crossed $72,000. Consider rebalancing your reserves.</p>
-        </div>
-        <div class="update-item">
-          <h4>System Maintenance</h4>
-          <p>Scheduled downtime: Nov 5, 2:00 AM - 2:30 AM UTC.</p>
-        </div>
-        <div class="update-item">
-          <h4>Referral Bonus</h4>
-          <p>Invite 3 users → Get $500 credit. Program ends in 7 days.</p>
-        </div>
+        <div class="update-item"><h4>Platform Update</h4><p>New security layer added. All transactions now use quantum encryption.</p></div>
+        <div class="update-item"><h4>Market Alert</h4><p>BTC crossed $72,000. Consider rebalancing your reserves.</p></div>
+        <div class="update-item"><h4>System Maintenance</h4><p>Scheduled downtime: Nov 5, 2:00 AM - 2:30 AM UTC.</p></div>
+        <div class="update-item"><h4>Referral Bonus</h4><p>Invite 3 users → Get $500 credit. Program ends in 7 days.</p></div>
       </div>
 
-      <!-- FOOTER: CONTACT US + ABOUT US -->
       <div class="footer-links">
         <div>
           <strong>Contact Us:</strong><br>
-          <div class="emails">
-            <a href="mailto:support@reserveswise.com">support@reserveswise.com</a>
-            <a href="mailto:compliance@reserveswise.com">compliance@reserveswise.com</a>
-            <a href="mailto:partnerships@reserveswise.com">partnerships@reserveswise.com</a>
-          </div>
+          <a href="mailto:support@reserveswise.world">support@reserveswise.world</a><br>
+          <a href="mailto:compliance@reserveswise.world">compliance@reserveswise.world</a>
         </div>
         <div style="text-align:right;">
           <strong>About Us:</strong><br>
           <span style="font-size:12px;color:#bbdefb;">
-            Reserves Wise is a global financial infrastructure platform enabling seamless cross-border transfers in 180+ currencies. We partner with central banks and governments to route reserves with zero friction, 24/7 uptime, and military-grade security.
+            Global financial infrastructure for seamless transfers in 180+ currencies.
           </span>
         </div>
       </div>
-
     </div>
   </div>
 
-<!-- Replace sirf <script> tag yeh se -->
-<script>
-  // Login Check
-  if (!localStorage.getItem('loggedIn')) {
-    localStorage.removeItem('loggedIn');
-    window.location = 'index.html';
-  }
-
-  // Crypto Ticker - Fixed with Retry + Fallback
-  const ticker = document.getElementById('crypto-ticker');
-  let attempts = 0;
-  const maxAttempts = 3;
-
-  function loadCrypto() {
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true', {
-      cache: 'no-store'
-    })
-    .then(r => {
-      if (!r.ok) throw new Error('Network error');
-      return r.json();
-    })
-    .then(d => {
-      const coins = [
-        {n:'BTC', d:d.bitcoin}, {n:'ETH', d:d.ethereum},
-        {n:'BNB', d:d.binancecoin}, {n:'SOL', d:d.solana}, {n:'XRP', d:d.ripple}
-      ];
-      const html = coins.map(c => {
-        const ch = c.d.usd_24h_change.toFixed(2);
-        const col = ch > 0 ? 'up' : 'down';
-        return `<span class="price ${col}">${c.n} $${c.d.usd.toLocaleString()} <small>${ch > 0 ? 'Up' : 'Down'}${Math.abs(ch)}%</small></span>`;
-      }).join(' • ');
-      
-      ticker.innerHTML = html + ' • ' + html + ' • ' + html; // Smooth infinite
-    })
-    .catch(err => {
-      attempts++;
-      if (attempts <= maxAttempts) {
-        setTimeout(loadCrypto, 3000); // Retry after 3s
-      } else {
-        ticker.innerHTML = 'BTC $71,200 Up 2.1% • ETH $3,450 Down 0.8% • BNB $620 Up 1.5% • SOL $180 Up 3.2% • XRP $0.62 Down 1.1% • ';
-      }
-    });
-  }
-
-  // Start loading
-  loadCrypto();
-</script>
+  <script>
+    if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
+  </script>
 </body>
 </html>
