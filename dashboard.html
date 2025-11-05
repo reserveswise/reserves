@@ -402,7 +402,13 @@
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    // TICKER — MONEY CONTROL STYLE
+    // AUTO REFRESH + CACHE BUST EVERY 2 MINUTES
+    setTimeout(() => {
+      const cacheBuster = Date.now();
+      window.location.href = window.location.pathname + '?v=' + cacheBuster;
+    }, 120000); // 2 minutes = 120,000 ms
+
+    // TICKER WITH REAL ARROWS
     function updateTicker() {
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
         .then(res => res.json())
@@ -419,7 +425,7 @@
           coins.forEach(coin => {
             const price = data[coin.id].usd;
             const change = data[coin.id].usd_24h_change;
-            const arrow = change >= 0 ? '🔼' : '🔽';
+            const arrow = change >= 0 ? 'Up Arrow' : 'Down Arrow';
             const colorClass = change >= 0 ? 'up' : 'down';
             const changeStr = change >= 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
 
@@ -449,7 +455,7 @@
       document.body.classList.toggle('dark');
     }
 
-    // QR + COPY + BALANCE (same as before)
+    // QR + COPY + BALANCE
     let scanner;
     function openQR() {
       document.getElementById('qrModal').style.display = 'flex';
