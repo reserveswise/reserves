@@ -404,9 +404,9 @@
 
     // AUTO REFRESH + CACHE BUST EVERY 2 MINUTES
     setTimeout(() => {
-      const cacheBuster = Date.now();
-      window.location.href = window.location.pathname + '?v=' + cacheBuster;
-    }, 120000); // 2 minutes = 120,000 ms
+  const cacheBuster = Date.now();
+  window.location.href = window.location.pathname + '?v=' + cacheBuster;
+}, 30000); // ← AB 30 SECONDS (30,000 ms)
 
     // TICKER WITH REAL ARROWS
     function updateTicker() {
