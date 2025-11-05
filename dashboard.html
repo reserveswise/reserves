@@ -91,7 +91,7 @@
       font-weight: 500;
     }
 
-    /* TICKER — NO CUTTING */
+    /* MONEY CONTROL TICKER */
     .ticker {
       padding: 12px 16px;
       background: rgba(10, 25, 50, 0.5);
@@ -115,17 +115,25 @@
     .price-item {
       display: inline-flex;
       align-items: center;
-      margin: 0 16px;
+      margin: 0 18px;
       font-weight: 600;
+      gap: 6px;
     }
-    .up { color: #10b981; }
-    .down { color: #ef4444; }
+    .price-item .symbol { font-weight: 700; }
+    .price-item .price { color: #fff; }
+    .price-item .change {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+    }
+    .up .change { color: #10b981; }
+    .down .change { color: #ef4444; }
 
     .current-amount { text-align: center; }
     .main-amount { font-size: 28px; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .ready-transfer { font-size: 13px; color: #42a5f5; margin: 6px 0; font-weight: 600; }
 
-    /* OLD LOADER BACK — NO TEXT */
     .transfer-stage {
       display: flex; align-items: center; justify-content: center; gap: 6px;
       font-size: 12px; color: #ffca28; background: rgba(255, 202, 40, 0.2);
@@ -201,16 +209,51 @@
       cursor: pointer;
     }
 
-    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: relative; }
-    .stat-box { text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(100, 181, 246, 0.3); }
-    .stat-box h3 { font-size: 11px; color: #90caf9; margin-bottom: 4px; }
-    .stat-box p { font-size: 15px; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; }
+    /* 3 EQUAL BOXES */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(100, 181, 246, 0.3);
+    }
+    .stat-box h3 {
+      font-size: 11px;
+      color: #90caf9;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .stat-box p {
+      font-size: 15px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fff;
+    }
 
-    .binding-alert { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #dc2626, #ef4444); color: white; padding: 4px 12px; border-radius: 30px; font-size: 10px; font-weight: 700; box-shadow: 0 3px 10px rgba(220, 38, 38, 0.5); animation: pulse-red 2s infinite; }
-    @keyframes pulse-red { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.03); } }
-
-    .binding-info { text-align: center; margin-top: 10px; color: #90caf9; font-size: 11px; }
-    .binding-info span { color: #64b5f6; font-weight: 700; }
+    .binding-alert {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(220, 38, 38, 0.5);
+      animation: pulse-red 2s infinite;
+    }
+    @keyframes pulse-red {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.03); }
+    }
 
     .referral-box {
       background: rgba(16, 185, 129, 0.15);
@@ -229,7 +272,19 @@
       font-family: monospace;
     }
 
-    .footer-links { margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; background: rgba(10, 25, 50, 0.5); backdrop-filter: blur(12px); border-radius: 14px; border: 1.2px solid rgba(100, 181, 246, 0.3); font-size: 11px; text-align: center; }
+    .footer-links {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(10, 25, 50, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      border: 1.2px solid rgba(100, 181, 246, 0.3);
+      font-size: 11px;
+      text-align: center;
+    }
 
     .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
     .popup.show { opacity: 1; visibility: visible; }
@@ -250,6 +305,7 @@
       .left::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0, 10, 30, 0.92), transparent); }
       .right { padding: 25px; gap: 18px; }
       .main-amount { font-size: 38px; }
+      .stats-grid { grid-template-columns: 1fr 1fr 1fr; }
       .popup-content { padding: 45px; max-width: 500px; }
       .popup .emoji { font-size: 70px; }
       .popup h2 { font-size: 30px; }
@@ -270,7 +326,7 @@
         <button class="qr-btn" onclick="openQR()">Scan QR</button>
       </div>
 
-      <!-- HEADER + TICKER BELOW -->
+      <!-- HEADER + TICKER -->
       <div class="glass-card header">
         <h1>YASIN YILDIRIM</h1>
         <p>Account Dashboard • Reserves Wise</p>
@@ -298,14 +354,14 @@
         </div>
       </div>
 
-      <!-- STATS -->
+      <!-- 3 EQUAL BOXES -->
       <div class="glass-card" style="position:relative;">
         <div class="binding-alert">Binding Request Restarted</div>
-        <div class="stats">
+        <div class="stats-grid">
           <div class="stat-box"><h3>RECEIVED AMOUNT</h3><p>872,090.50 USDT</p></div>
           <div class="stat-box"><h3>PENDING AMOUNT</h3><p>372,950.50 USDT</p></div>
+          <div class="stat-box"><h3>REMAINING BINDING</h3><p>1,245,041.00 USDT</p></div>
         </div>
-        <div class="binding-info"><strong>Remaining USDT for Binding:</strong> <span>1,245,041.00 USDT</span></div>
       </div>
 
       <!-- REFERRAL -->
@@ -346,7 +402,7 @@
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
 
-    // TICKER WITH REAL ARROWS + %
+    // TICKER — MONEY CONTROL STYLE
     function updateTicker() {
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
         .then(res => res.json())
@@ -368,7 +424,11 @@
             const changeStr = change >= 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
 
             items.push(
-              `<div class="price-item ${colorClass}"><span>${coin.symbol} $${price.toLocaleString()}</span><span>${arrow} ${changeStr}</span></div>`
+              `<div class="price-item ${colorClass}">
+                <span class="symbol">${coin.symbol}</span>
+                <span class="price">$${price.toLocaleString()}</span>
+                <span class="change">${arrow} ${changeStr}</span>
+              </div>`
             );
           });
 
@@ -377,7 +437,8 @@
         })
         .catch(() => {
           document.getElementById('liveTicker').innerHTML = 
-            'BTC $71,200 Up Arrow +2.1% • ETH $3,450 Down Arrow -0.8% • BNB $620 Up Arrow +1.5% • SOL $180 Up Arrow +3.2% • XRP $0.62 Down Arrow -1.1% • ';
+            '<div class="price-item up"><span class="symbol">BTC</span><span class="price">$71,200</span><span class="change">Up Arrow +2.1%</span></div> • ' +
+            '<div class="price-item down"><span class="symbol">ETH</span><span class="price">$3,450</span><span class="change">Down Arrow -0.8%</span></div> • ';
         });
     }
     updateTicker();
@@ -388,7 +449,7 @@
       document.body.classList.toggle('dark');
     }
 
-    // QR SCANNER
+    // QR + COPY + BALANCE (same as before)
     let scanner;
     function openQR() {
       document.getElementById('qrModal').style.display = 'flex';
@@ -406,7 +467,6 @@
       if (scanner) scanner.reset();
     }
 
-    // COPY
     function copyWallet() {
       const input = document.getElementById('walletInput');
       input.select();
@@ -419,7 +479,6 @@
       alert('Referral link copied!');
     }
 
-    // LIVE BALANCE
     const baseReady = 320090.32;
     function formatUSDT(num) {
       return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USDT";
