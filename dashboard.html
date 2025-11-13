@@ -132,7 +132,7 @@
       timerInterval = setInterval(() => {
         if (totalSeconds <= 0) {
           clearInterval(timerInterval);
-          document.getElementById('timerOverlay').style.display = 'none';
+          //document.getElementById('timerOverlay').style.display = 'none';
           localStorage.removeItem(TIMER_KEY);
           playWarningSound();
           return;
