@@ -78,60 +78,20 @@
     .qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
     .qr-modal video { width: 100%; max-width: 300px; border-radius: 12px; }
     .qr-modal button { margin-top: 10px; background: #dc2626; padding: 8px 16px; border: none; border-radius: 8px; color: white; }
-
-    /* GLASSY TIMER OVERLAY */
-    .timer-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 10, 30, 0.78);
-      backdrop-filter: blur(22px) saturate(180%);
-      -webkit-backdrop-filter: blur(22px) saturate(180%);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 999999; pointer-events: none;
-    }
-    .timer-box {
-      background: rgba(15, 25, 70, 0.65);
-      backdrop-filter: blur(30px) saturate(200%);
-      -webkit-backdrop-filter: blur(30px) saturate(200%);
-      border: 3px solid rgba(255, 70, 70, 0.5);
-      border-radius: 30px; padding: 30px 26px; text-align: center;
-      width: 94%; max-width: 440px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,100,100,0.2);
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-    .warning-text {
-      color: #ff3333; font-weight: 900; font-size: 18px; margin-bottom: 16px;
-      animation: pulse-red 1s infinite; text-shadow: 0 0 14px rgba(255,51,51,0.9);
-    }
-    .timer-display {
-      font-family: 'Cinzel', serif; font-size: 44px; font-weight: 700;
-      color: #ffca28; margin: 18px 0; letter-spacing: 4px;
-      text-shadow: 0 0 18px rgba(255,202,40,0.7);
-    }
-
-    @media (min-width: 769px) {
-      .container { display: grid; grid-template-columns: 1fr 1fr; }
-      .left { display: block; background: url('logo.png') center/cover no-repeat; position: relative; }
-      .left::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0, 10, 30, 0.92), transparent); }
-      .right { padding: 25px; gap: 18px; }
-      .main-amount { font-size: 38px; }
-      .stats-grid { grid-template-columns: 1fr 1fr 1fr; }
-      .popup-content { padding: 45px; max-width: 500px; }
-      .popup .emoji { font-size: 70px; }
-      .popup h2 { font-size: 30px; }
-      .popup p { font-size: 16px; }
-    }
-  </style>
 </head>
 <body>
 
   <!-- OVERLAY INJECTED HERE -->
-  <div class="timer-overlay" id="timerOverlay">
-    <div class="timer-box">
-      <div class="warning-text">Update 1915 USDT and complete binding in</div>
-      <div class="timer-display" id="countdownTimer">48:00:00</div>
-    </div>
-  </div>
+<!-- YE <body> KE ANDAR, </body> SE PEHLE -->
+<div id="overlayContainer"></div>
+
+<script>
+  fetch('overlay.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('overlayContainer').innerHTML = html;
+    });
+</script>
 
   <div class="container">
     <div class="left"></div>
