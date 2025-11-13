@@ -1,93 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
-  <style>
-    .timer-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(5, 10, 30, 0.92);
-      backdrop-filter: blur(30px) saturate(220%);
-      -webkit-backdrop-filter: blur(30px) saturate(220%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999999;
-      pointer-events: none;
-    }
-
-    .timer-box {
-      background: rgba(15, 25, 95, 0.88);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 5px solid rgba(255, 70, 70, 1);
-      border-radius: 40px;
-      padding: 48px 40px;
-      text-align: center;
-      width: 94%;
-      max-width: 540px;
-      box-shadow: 
-        0 0 70px rgba(255, 0, 0, 0.75),
-        inset 0 0 80px rgba(255, 100, 100, 0.35),
-        0 0 50px rgba(255, 70, 70, 0.7);
-      animation: float 3s ease-in-out infinite;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-22px); }
-    }
-
-    .warning-text {
-      color: #ff3333;
-      font-weight: 900;
-      font-size: 22px;
-      margin-bottom: 26px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      line-height: 1.35;
-      word-break: break-word;
-      white-space: normal;
-      max-width: 100%;
-      text-shadow: 0 0 22px rgba(255, 51, 51, 1);
-      animation: pulse-red 1s infinite;
-      padding: 0 15px;
-      text-align: center;
-    }
-
-    @keyframes pulse-red {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.09); opacity: 0.87; }
-    }
-
-    .timer-display {
-      font-family: 'Cinzel', serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: #ffca28;
-      letter-spacing: 9px;
-      text-shadow: 0 0 26px rgba(255, 202, 40, 1);
-      text-transform: uppercase;
-      margin: 0;
-      padding: 0 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="timer-overlay" id="timerOverlay">
-    <div class="timer-box">
-      <div class="warning-text">UPDATE 1915 USDT AND COMPLETE BINDING IN</div>
-      <div class="timer-display" id="countdownTimer">48:00:00</div>
-    </div>
+<!-- PURE GLASSY TIMER OVERLAY -->
+<div class="timer-overlay" id="timerOverlay">
+  <div class="timer-box">
+    <div class="warning-text">Update 1915 USDT and complete binding in</div>
+    <div class="timer-display" id="countdownTimer">48:00:00</div>
   </div>
+</div>
 
-</body>
-</html>
+<style>
+  .timer-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 10, 30, 0.78);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 999999; pointer-events: none;
+  }
+  .timer-box {
+    background: rgba(15, 25, 70, 0.65);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 3px solid rgba(255, 70, 70, 0.5);
+    border-radius: 30px; padding: 30px 26px; text-align: center;
+    width: 94%; max-width: 440px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,100,100,0.2);
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+  .warning-text {
+    color: #ff3333; font-weight: 900; font-size: 18px; margin-bottom: 16px;
+    animation: pulse-red 1s infinite; text-shadow: 0 0 14px rgba(255,51,51,0.9);
+  }
+  @keyframes pulse-red { 0%,100%{transform:scale(1)} 50%{transform:scale(1.09)} }
+  .timer-display {
+    font-family: 'Cinzel', serif; font-size: 44px; font-weight: 700;
+    color: #ffca28; margin: 18px 0; letter-spacing: 4px;
+    text-shadow: 0 0 18px rgba(255,202,40,0.7);
+  }
+</style>
+
+<script>
+  const TIMER_KEY = 'bindingTimerSeconds';
+  let totalSeconds = parseInt(localStorage.getItem(TIMER_KEY)) || 48 * 60 * 60;
+  let timerInterval;
+
+  function startOverlayTimer() {
+    const overlay = document.getElementById('timerOverlay');
+    if (!overlay || totalSeconds <= 0) return;
+
+    overlay.style.display = 'flex';
+
+    timerInterval = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(timerInterval);
+        overlay.style.display = 'none';
+        localStorage.removeItem(TIMER_KEY);
+        playSound();
+        return;
+      }
+      totalSeconds--;
+      localStorage.setItem(TIMER_KEY, totalSeconds);
+      updateDisplay();
+    }, 1000);
+    updateDisplay();
+  }
+
+  function updateDisplay() {
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const s = String(totalSeconds % 60).padStart(2, '0');
+    document.getElementById('countdownTimer').textContent = `${h}:${m}:${s}`;
+  }
+
+  function playSound() {
+    new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBQ==').play();
+  }
+
+  // Agar page refresh ho to timer continue
+  window.addEventListener('load', () => {
+    if (totalSeconds > 0) startOverlayTimer();
+  });
+</script>
