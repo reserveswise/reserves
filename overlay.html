@@ -8,23 +8,49 @@
 
 <style>
   .timer-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(5, 10, 30, 0.78);
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 999999; pointer-events: none;
-  }
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(5, 10, 30, 0.78);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 999999; pointer-events: none;
+}
   .timer-box {
-    background: rgba(15, 25, 70, 0.65);
-    backdrop-filter: blur(30px) saturate(200%);
-    -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 3px solid rgba(255, 70, 70, 0.5);
-    border-radius: 30px; padding: 30px 26px; text-align: center;
-    width: 94%; max-width: 440px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,100,100,0.2);
-    animation: float 3s ease-in-out infinite;
-  }
+  background: rgba(15, 25, 70, 0.65);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 3px solid rgba(255, 70, 70, 0.5);
+  border-radius: 30px; 
+  padding: 32px 28px; /* PADDING BADHAYA */
+  text-align: center;
+  width: 94%; 
+  max-width: 460px; /* BOX THODA BADA KIYA */
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 0 40px rgba(255,100,100,0.2);
+  animation: float 3s ease-in-out infinite;
+}
+  .warning-text {
+  color: #ff3333; 
+  font-weight: 900; 
+  font-size: 18px; 
+  margin-bottom: 18px;
+  animation: pulse-red 1s infinite; 
+  text-shadow: 0 0 14px rgba(255,51,51,0.9);
+  text-transform: uppercase; /* SAB CAPITAL */
+  letter-spacing: 1.2px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+  .timer-display {
+  font-family: 'Cinzel', serif; 
+  font-size: 46px; 
+  font-weight: 700;
+  color: #ffca28; 
+  margin: 20px 0; 
+  letter-spacing: 5px;
+  text-shadow: 0 0 18px rgba(255,202,40,0.7);
+  text-transform: uppercase;
+}
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
   .warning-text {
     color: #ff3333; font-weight: 900; font-size: 18px; margin-bottom: 16px;
