@@ -17,10 +17,8 @@
       transition: filter 0.4s ease;
     }
     body.dark { filter: brightness(0.75) contrast(1.1); }
-
     .container { display: flex; flex-direction: column; height: 100%; }
     .left { display: none; }
-
     .right {
       background: linear-gradient(135deg, rgba(0, 20, 60, 0.98), rgba(0, 10, 40, 0.99));
       padding: 16px;
@@ -31,7 +29,6 @@
       height: 100%;
       position: relative;
     }
-
     .logout {
       position: absolute;
       top: 12px;
@@ -46,7 +43,6 @@
       box-shadow: 0 4px 12px rgba(30, 136, 229, 0.4);
       z-index: 9999;
     }
-
     .header-controls {
       display: flex;
       justify-content: space-between;
@@ -62,7 +58,6 @@
       font-size: 11px;
       cursor: pointer;
     }
-
     .glass-card {
       background: rgba(10, 30, 70, 0.45);
       backdrop-filter: blur(18px) saturate(180%);
@@ -72,7 +67,6 @@
       border: 1.5px solid rgba(100, 181, 246, 0.35);
       box-shadow: 0 10px 25px rgba(0, 30, 80, 0.5);
     }
-
     .header {
       text-align: center;
     }
@@ -90,7 +84,6 @@
       color: #90caf9;
       font-weight: 500;
     }
-
     /* MONEY CONTROL TICKER */
     .ticker {
       padding: 12px 16px;
@@ -111,7 +104,6 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-
     .price-item {
       display: inline-flex;
       align-items: center;
@@ -129,11 +121,9 @@
     }
     .up .change { color: #10b981; }
     .down .change { color: #ef4444; }
-
     .current-amount { text-align: center; }
     .main-amount { font-size: 28px; font-family: 'Cinzel', serif; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .ready-transfer { font-size: 13px; color: #42a5f5; margin: 6px 0; font-weight: 600; }
-
     .transfer-stage {
       display: flex; align-items: center; justify-content: center; gap: 6px;
       font-size: 12px; color: #ffca28; background: rgba(255, 202, 40, 0.2);
@@ -151,7 +141,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     .transfer-btn {
       margin-top: 10px;
       padding: 10px 20px;
@@ -166,7 +155,6 @@
       display: block;
       width: fit-content;
     }
-
     .dropdown {
       margin-top: 8px;
       padding: 12px;
@@ -208,7 +196,6 @@
       font-size: 13px;
       cursor: pointer;
     }
-
     /* 3 EQUAL BOXES */
     .stats-grid {
       display: grid;
@@ -235,7 +222,6 @@
       font-weight: 700;
       color: #fff;
     }
-
     .binding-alert {
       position: absolute;
       top: -10px;
@@ -254,7 +240,6 @@
       0%, 100% { transform: translateX(-50%) scale(1); }
       50% { transform: translateX(-50%) scale(1.03); }
     }
-
     .referral-box {
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid #10b981;
@@ -271,7 +256,6 @@
       word-break: break-all;
       font-family: monospace;
     }
-
     .footer-links {
       margin-top: auto;
       display: flex;
@@ -285,7 +269,6 @@
       font-size: 11px;
       text-align: center;
     }
-
     .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: flex; align-items: center; justify-content: center; z-index: 99999; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
     .popup.show { opacity: 1; visibility: visible; }
     .popup-content { background: rgba(10, 25, 50, 0.92); backdrop-filter: blur(20px); padding: 30px 20px; border-radius: 20px; text-align: center; border: 2px solid #10b981; box-shadow: 0 15px 35px rgba(0, 30, 80, 0.6); transform: scale(0.85); transition: transform 0.4s ease; max-width: 85%; }
@@ -294,11 +277,9 @@
     .popup h2 { font-family: 'Cinzel', serif; font-size: 20px; color: #10b981; margin-bottom: 8px; }
     .popup p { font-size: 13px; color: #bbf7d0; margin-bottom: 20px; font-weight: 500; }
     .popup button { background: linear-gradient(135deg, #10b981, #059669); padding: 10px 24px; border: none; border-radius: 12px; color: white; font-weight: 700; font-size: 13px; cursor: pointer; }
-
     .qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999999; align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
     .qr-modal video { width: 100%; max-width: 300px; border-radius: 12px; }
     .qr-modal button { margin-top: 10px; background: #dc2626; padding: 8px 16px; border: none; border-radius: 8px; color: white; }
-
     @media (min-width: 769px) {
       .container { display: grid; grid-template-columns: 1fr 1fr; }
       .left { display: block; background: url('logo.png') center/cover no-repeat; position: relative; }
@@ -314,46 +295,38 @@
   </style>
 </head>
 <body>
-
   <div class="container">
     <div class="left"></div>
-
     <div class="right">
       <a href="index.html" class="logout" onclick="localStorage.removeItem('loggedIn'); return true;">Logout</a>
-
       <div class="header-controls">
         <button class="mode-toggle" onclick="toggleMode()">Dark Mode</button>
         <button class="qr-btn" onclick="openQR()">Scan QR</button>
       </div>
-
       <!-- HEADER + TICKER -->
       <div class="glass-card header">
         <h1>YASIN YILDIRIM</h1>
         <p>Account Dashboard • Reserves Wise</p>
       </div>
-
       <div class="glass-card ticker">
         <div class="ticker-inner" id="liveTicker">
           Loading live prices...
         </div>
       </div>
-
       <!-- MAIN BALANCE -->
       <div class="glass-card current-amount">
-        <div class="main-amount" id="mainBalance">320,090.32 USDT</div>
-        <div class="ready-transfer" id="readyTransfer">Ready to Transfer: 320,090.32 USDT</div>
+        <div class="main-amount" id="mainBalance">332,691.35 USDT</div>
+        <div class="ready-transfer" id="readyTransfer">Ready to Transfer: 332,691.35 USDT</div>
         <div class="transfer-stage">
           <div class="loader"></div> Transfer Stage: Processing
         </div>
         <button class="transfer-btn" onclick="toggleDropdown()">Transfer Now</button>
-
         <div class="dropdown" id="transferDropdown">
           <input type="text" placeholder="Enter BNB Smart Chain Wallet" id="walletInput" />
           <button class="copy-btn" onclick="copyWallet()">Copy</button>
           <button onclick="proceedTransfer()">Proceed</button>
         </div>
       </div>
-
       <!-- 3 EQUAL BOXES -->
       <div class="glass-card" style="position:relative;">
         <div class="binding-alert">Binding Request Processed</div>
@@ -363,51 +336,43 @@
           <div class="stat-box"><h3>REMAINING USDT FOR BINDING</h3><p>1915.00 USDT</p></div>
         </div>
       </div>
-
       <!-- REFERRAL -->
       <div class="glass-card referral-box">
         <strong>Invite & Earn 500 USDT</strong>
         <div class="referral-link" id="refLink">https://reserveswise.world/r/client9090</div>
         <button onclick="copyRef()" style="background:#10b981;padding:6px 12px;border:none;border-radius:8px;color:white;font-size:11px;">Copy Link</button>
       </div>
-
       <div class="glass-card updates">
         <div class="update-item"><h4>Platform Update</h4><p>Quantum encryption layer deployed.</p></div>
         <div class="update-item"><h4>Market Alert</h4><p>USDT peg stable at 1.0001.</p></div>
       </div>
-
       <div class="footer-links">
         <div><strong>Contact Us:</strong><br><a href="mailto:reservesautomationreq@outlook.com">reserveswise@outlook.com</a></div>
         <div><strong>About Us:</strong><br>Global USDT Reserve Network</div>
       </div>
     </div>
   </div>
-
   <!-- POPUP -->
   <div class="popup" id="successPopup">
     <div class="popup-content">
-      <div class="emoji">₿Awating₿</div>
+      <div class="emoji">Awaiting</div>
       <h2>COMPLETE BINDING TO TRANSFER</h2>
-      <p id="popupAmount">320,090.32 USDT ready for BNB Smart Chain transfer.</p>
+      <p id="popupAmount">332,691.35 USDT ready for BNB Smart Chain transfer.</p>
       <button onclick="closePopup()">Close</button>
     </div>
   </div>
-
   <!-- QR MODAL -->
   <div class="qr-modal" id="qrModal">
     <video id="qrVideo"></video>
     <button onclick="closeQR()">Close</button>
   </div>
-
   <script>
     if (!localStorage.getItem('loggedIn')) window.location = 'index.html';
-
-    // AUTO REFRESH + CACHE BUST EVERY 2 MINUTES
+    // AUTO REFRESH + CACHE BUST EVERY 30 SECONDS
     setTimeout(() => {
-  const cacheBuster = Date.now();
-  window.location.href = window.location.pathname + '?v=' + cacheBuster;
-}, 30000); // ← AB 30 SECONDS (30,000 ms)
-
+      const cacheBuster = Date.now();
+      window.location.href = window.location.pathname + '?v=' + cacheBuster;
+    }, 30000);
     // TICKER WITH REAL ARROWS
     function updateTicker() {
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd&include_24hr_change=true')
@@ -421,14 +386,12 @@
             { id: 'solana', symbol: 'SOL' },
             { id: 'ripple', symbol: 'XRP' }
           ];
-
           coins.forEach(coin => {
             const price = data[coin.id].usd;
             const change = data[coin.id].usd_24h_change;
-            const arrow = change >= 0 ? '▲' : '▼';
+            const arrow = change >= 0 ? 'Up Arrow' : 'Down Arrow';
             const colorClass = change >= 0 ? 'up' : 'down';
             const changeStr = change >= 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
-
             items.push(
               `<div class="price-item ${colorClass}">
                 <span class="symbol">${coin.symbol}</span>
@@ -437,24 +400,21 @@
               </div>`
             );
           });
-
           const tickerHTML = items.join(' • ') + ' • ' + items.join(' • ');
           document.getElementById('liveTicker').innerHTML = tickerHTML;
         })
         .catch(() => {
-          document.getElementById('liveTicker').innerHTML = 
+          document.getElementById('liveTicker').innerHTML =
             '<div class="price-item up"><span class="symbol">BTC</span><span class="price">$71,200</span><span class="change">Up Arrow +2.1%</span></div> • ' +
             '<div class="price-item down"><span class="symbol">ETH</span><span class="price">$3,450</span><span class="change">Down Arrow -0.8%</span></div> • ';
         });
     }
     updateTicker();
     setInterval(updateTicker, 30000);
-
     // DARK MODE
     function toggleMode() {
       document.body.classList.toggle('dark');
     }
-
     // QR + COPY + BALANCE
     let scanner;
     function openQR() {
@@ -472,7 +432,6 @@
       document.getElementById('qrModal').style.display = 'none';
       if (scanner) scanner.reset();
     }
-
     function copyWallet() {
       const input = document.getElementById('walletInput');
       input.select();
@@ -484,27 +443,14 @@
       navigator.clipboard.writeText(link);
       alert('Referral link copied!');
     }
-
-    const baseReady = 320090.32;
-    function formatUSDT(num) {
-      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " USDT";
-    }
-    function fluctuateReady() {
-      const change = (Math.random() - 0.5) * 200;
-      const newReady = Math.max(300000, baseReady + change);
-      const formatted = formatUSDT(newReady);
-      document.getElementById('mainBalance').textContent = formatted;
-      document.getElementById('readyTransfer').textContent = "Ready to Transfer: " + formatted;
-      document.getElementById('popupAmount').textContent = formatted + " ready for BNB Smart Chain transfer.";
-    }
-    setInterval(fluctuateReady, 1000);
-    fluctuateReady();
-
+    // FIXED BALANCE — NO ANIMATION
+    document.getElementById('mainBalance').textContent = "332,691.35 USDT";
+    document.getElementById('readyTransfer').textContent = "Ready to Transfer: 332,691.35 USDT";
+    document.getElementById('popupAmount').textContent = "332,691.35 USDT ready for BNB Smart Chain transfer.";
     function toggleDropdown() {
       const dropdown = document.getElementById('transferDropdown');
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
-
     function proceedTransfer() {
       const wallet = document.getElementById('walletInput').value.trim();
       if (wallet && wallet.length > 20 && wallet.startsWith('0x')) {
@@ -516,13 +462,11 @@
         alert('Please enter a valid BNB Smart Chain wallet address (starts with 0x).');
       }
     }
-
     function closePopup() {
       document.getElementById('successPopup').classList.remove('show');
       document.getElementById('transferDropdown').style.display = 'none';
       document.getElementById('walletInput').value = '';
     }
-
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
